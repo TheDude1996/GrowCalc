@@ -2,14 +2,16 @@
 
 🌐 **Projektseite:** https://thedude1996.github.io/GrowCalc/
 
-**GrowCalc** ist eine Android-App mit Rechnern für den Indoor-Anbau: Lüftung, Klima, Licht und Düngung – übersichtlich, offline und ohne Werbung.
+**GrowCalc** ist eine Android-App mit Rechnern für den Indoor-Anbau: Lüftung, Klima, Licht, Düngung und Bewässerung – übersichtlich, offline und ohne Werbung.
 
 <p align="center">
   <img src="docs/screenshots/dashboard.png" width="260" alt="Dashboard" />
   &nbsp;&nbsp;
   <img src="docs/screenshots/vpd.png" width="260" alt="VPD-Rechner mit Ergebnis" />
   &nbsp;&nbsp;
-  <img src="docs/screenshots/duenger.png" width="260" alt="Dosierrechner mit Ergebnis" />
+  <img src="docs/screenshots/ppfd.png" width="260" alt="PPFD-Lichtmesser" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/bewaesserung_ergebnis.png" width="260" alt="Bewässerungsrechner mit Ergebnis" />
 </p>
 
 ## Download
@@ -32,6 +34,8 @@ So installierst du die APK:
 | **VPD-Rechner** | Dampfdruckdefizit (Luft und Blatt) aus Lufttemperatur, rel. Feuchte und Blatt-Offset, mit farbiger Bewertung |
 | **DLI-Rechner** | Daily Light Integral aus PPFD und Beleuchtungsdauer, mit Schnellwahl (12/16/18/20/24 h) |
 | **Dosierrechner (Dünger)** | Nährstoffmengen nach Herstellerschema (Green House Feeding, Athena, Advanced Nutrients) inkl. Ca:Mg-Korrektur anhand der Wasseranalyse |
+| **PPFD-Lichtmesser** | Live-Messung mit dem Lichtsensor des Handys, Umrechnung Lux → PPFD (µmol/m²/s) für Sonne, LED, HPS und Leuchtstoff, mit Kalibrierfaktor |
+| **Bewässerungsrechner** | Wassermenge pro Topf aus Tropfer-Durchfluss, Tropfern und Laufzeit; mehrere Bewässerungen pro Tag, Tagesmenge, Tank-Reichweite und Laufzeit für eine Zielmenge |
 
 Weitere Merkmale:
 

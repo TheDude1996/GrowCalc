@@ -4,146 +4,440 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GrowCalc – Rechner für den Indoor-Anbau</title>
-  <meta name="description" content="GrowCalc: Android-App mit Volumenstrom-, VPD-, DLI- und Dünger-Rechner. Offline, ohne Werbung, Open Source (GPL-3.0)." />
+  <meta name="description" content="GrowCalc: kostenlose Android-App mit Rechnern für Volumenstrom, VPD, DLI, Dünger, PPFD-Lichtmessung und Bewässerung. Offline, ohne Werbung, Open Source (GPL-3.0)." />
+  <meta property="og:title" content="GrowCalc – Rechner für den Indoor-Anbau" />
+  <meta property="og:description" content="Sechs Rechner für Klima, Licht, Dünger und Bewässerung – offline, ohne Werbung, Open Source." />
+  <meta property="og:image" content="https://thedude1996.github.io/GrowCalc/screenshots/dashboard.png" />
+  <meta name="theme-color" content="#2d6a4f" />
   <style>
     :root {
-      --bg: #f5faf5; --surface: #edf4ee; --text: #171d19; --muted: #404943;
+      --bg: #f5faf5; --surface: #edf4ee; --surface-2: #e3ede5; --text: #171d19; --muted: #404943;
       --primary: #2d6a4f; --on-primary: #fff; --hero-a: #1b4332; --hero-b: #40916c;
       --air: #d6e8ff; --air-i: #1e5fa8; --vpd: #c9f0ec; --vpd-i: #00695f;
       --dli: #ffe7b3; --dli-i: #8f5b00; --nut: #d4f0c4; --nut-i: #2f6b12;
-      --border: #c0c9c1;
+      --ppfd: #ecdcff; --ppfd-i: #6b3fa0; --irr: #d3e7f8; --irr-i: #1d5f8f;
+      --border: #c0c9c1; --bezel: #1c211e; --shadow: 0 18px 40px rgba(20,40,30,.18);
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f1511; --surface: #171d19; --text: #dee4de; --muted: #c0c9c1;
+        --bg: #0f1511; --surface: #171d19; --surface-2: #1e2620; --text: #dee4de; --muted: #c0c9c1;
         --primary: #8fd8ae; --on-primary: #00391f; --hero-a: #0f2e22; --hero-b: #22694a;
         --air: #16365c; --air-i: #a8cbff; --vpd: #00403a; --vpd-i: #7fdcd0;
         --dli: #4a3200; --dli-i: #ffcb6b; --nut: #1e4210; --nut-i: #a9dd8c;
-        --border: #404943;
+        --ppfd: #3a2560; --ppfd-i: #d9bfff; --irr: #123b5c; --irr-i: #9fd0ff;
+        --border: #404943; --bezel: #000; --shadow: 0 18px 40px rgba(0,0,0,.45);
       }
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 16px; }
     body { margin: 0; background: var(--bg); color: var(--text);
-      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-    header { padding: 20px 0; }
+      font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--primary); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+    /* Header */
+    header { padding: 18px 0; }
     header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem; }
-    .brand svg { width: 28px; height: 28px; fill: var(--primary); }
-    nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: .95rem; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--text); }
+    .brand svg { width: 30px; height: 30px; fill: var(--primary); }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: .95rem; }
     nav a:hover { color: var(--primary); }
+
+    /* Hero */
     .hero { background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); color: #fff;
-      border-radius: 28px; padding: 48px 32px; display: grid; grid-template-columns: 1.2fr 1fr;
-      gap: 32px; align-items: center; overflow: hidden; }
-    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; margin: 8px 0 16px; }
-    .hero p { opacity: .9; margin: 0 0 24px; max-width: 46ch; }
-    .overline { letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; opacity: .85; }
-    .btn { display: inline-block; padding: 14px 22px; border-radius: 18px; font-weight: 600;
-      text-decoration: none; margin: 0 8px 8px 0; }
+      border-radius: 32px; padding: 56px 40px; display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 32px; align-items: center; overflow: hidden; position: relative; }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.07); }
+    .hero::before { width: 420px; height: 420px; right: -120px; top: -160px; }
+    .hero::after { width: 260px; height: 260px; left: 38%; bottom: -150px; }
+    .hero > * { position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.12; margin: 10px 0 18px; }
+    .hero p { opacity: .92; margin: 0 0 26px; max-width: 48ch; font-size: 1.05rem; }
+    .overline { letter-spacing: .1em; text-transform: uppercase; font-size: .8rem; opacity: .85; font-weight: 600; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 18px; font-weight: 600;
+      text-decoration: none; margin: 0 8px 10px 0; transition: transform .15s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn svg { width: 20px; height: 20px; fill: currentColor; }
     .btn-light { background: #fff; color: #1b4332; }
     .btn-ghost { border: 1.5px solid rgba(255,255,255,.6); color: #fff; }
-    .shots { display: flex; gap: 14px; justify-content: center; }
-    .shots img { width: 46%; max-width: 210px; border-radius: 22px; box-shadow: 0 12px 32px rgba(0,0,0,.3); }
-    .shots img:last-child { transform: translateY(24px); }
-    h2 { font-size: 1.6rem; margin: 64px 0 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-    .card { background: var(--surface); border-radius: 24px; padding: 22px; }
-    .card h3 { margin: 14px 0 4px; font-size: 1.1rem; }
+    .hero-meta { font-size: .85rem; opacity: .8; margin-top: 6px; }
+    .hero-shots { display: flex; justify-content: center; align-items: flex-start; gap: 16px; }
+    .hero-shots .phone { width: 46%; max-width: 230px; }
+    .hero-shots .phone:nth-child(2) { transform: translateY(36px); }
+
+    /* Phone frame */
+    .phone { background: var(--bezel); border-radius: 30px; padding: 7px; box-shadow: var(--shadow); }
+    .phone img { border-radius: 24px; width: 100%; }
+    .hero .phone { box-shadow: 0 20px 44px rgba(0,0,0,.35); }
+
+    /* Stats strip */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+    .stat { background: var(--surface); border-radius: 22px; padding: 18px 20px; }
+    .stat b { display: block; font-size: 1.5rem; color: var(--primary); line-height: 1.2; }
+    .stat span { color: var(--muted); font-size: .9rem; }
+
+    /* Sections */
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 80px 0 8px; line-height: 1.2; }
+    .lead { color: var(--muted); margin: 0 0 28px; max-width: 65ch; }
+
+    /* Tool grid */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--surface); border-radius: 26px; padding: 22px; text-decoration: none; color: var(--text);
+      transition: transform .15s, background .15s; display: block; }
+    .card:hover { transform: translateY(-3px); background: var(--surface-2); }
+    .card h3 { margin: 16px 0 4px; font-size: 1.12rem; }
     .card p { margin: 0; color: var(--muted); font-size: .95rem; }
-    .badge { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; }
-    .badge svg { width: 26px; height: 26px; }
-    ul.features { columns: 2; padding-left: 20px; color: var(--muted); }
-    ul.features li { margin-bottom: 6px; break-inside: avoid; }
-    pre { background: var(--surface); border-radius: 16px; padding: 16px; overflow-x: auto; font-size: .9rem; }
+    .badge { width: 54px; height: 54px; border-radius: 17px; display: grid; place-items: center; flex: none; }
+    .badge svg { width: 27px; height: 27px; }
+
+    /* Feature detail */
+    .feature { display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center;
+      padding: 56px 0; border-top: 1px solid var(--border); }
+    .feature:first-of-type { border-top: 0; }
+    .feature.flip { grid-template-columns: 1fr 300px; }
+    .feature.flip .shots { order: 2; }
+    .feature .shots { display: flex; gap: 14px; }
+    .feature .shots .phone { flex: 1; }
+    .feature .shots.two { width: 100%; }
+    .feature-head { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .feature h3 { font-size: 1.6rem; margin: 0; line-height: 1.2; }
+    .feature .kicker { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .feature p { color: var(--muted); margin: 0 0 14px; }
+    .checks { list-style: none; padding: 0; margin: 16px 0; }
+    .checks li { padding-left: 30px; position: relative; margin-bottom: 8px; }
+    .checks li::before { content: ""; position: absolute; left: 0; top: 4px; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--nut) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232f6b12' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat; }
+    .formula { background: var(--surface); border-radius: 18px; padding: 14px 18px; font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: .9rem; overflow-x: auto; white-space: pre; margin: 16px 0 0; color: var(--text); }
+    .formula small { font-family: system-ui, sans-serif; color: var(--muted); display: block; margin-bottom: 4px; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; }
+    table.scale { border-collapse: separate; border-spacing: 0 6px; width: 100%; font-size: .92rem; margin-top: 8px; }
+    table.scale td { padding: 6px 12px; background: var(--surface); }
+    table.scale td:first-child { border-radius: 12px 0 0 12px; font-weight: 600; white-space: nowrap; }
+    table.scale td:last-child { border-radius: 0 12px 12px 0; color: var(--muted); }
+    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+    /* Gallery */
+    .gallery { display: flex; gap: 18px; overflow-x: auto; padding: 8px 4px 24px; scroll-snap-type: x mandatory; }
+    .gallery figure { margin: 0; flex: 0 0 210px; scroll-snap-align: start; }
+    .gallery figcaption { text-align: center; color: var(--muted); font-size: .88rem; margin-top: 10px; }
+
+    /* Misc */
+    .features-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .mini { background: var(--surface); border-radius: 22px; padding: 20px; }
+    .mini b { display: block; margin-bottom: 4px; }
+    .mini span { color: var(--muted); font-size: .93rem; }
+    .install { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .install .mini ol { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+    pre { background: var(--surface-2); border-radius: 14px; padding: 14px; overflow-x: auto; font-size: .88rem; margin: 10px 0 0; }
     code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
-    a { color: var(--primary); }
-    footer { border-top: 1px solid var(--border); margin-top: 72px; padding: 24px 0 40px; color: var(--muted); font-size: .9rem; }
+    details { background: var(--surface); border-radius: 18px; padding: 16px 20px; margin-bottom: 10px; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { color: var(--muted); margin: 10px 0 0; }
+    .note { background: var(--dli); color: var(--text); border-radius: 18px; padding: 14px 18px; margin-top: 20px; font-size: .93rem; }
+    footer { border-top: 1px solid var(--border); margin-top: 80px; padding: 28px 0 44px; color: var(--muted); font-size: .9rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .grid, .features-list { grid-template-columns: repeat(2, 1fr); }
+      .feature, .feature.flip { grid-template-columns: 1fr; gap: 28px; }
+      .feature.flip .shots { order: 0; }
+      .feature .shots { max-width: 300px; margin: 0 auto; }
+      .feature .shots.two { max-width: 460px; }
+    }
     @media (max-width: 760px) {
-      .hero { grid-template-columns: 1fr; padding: 32px 22px; }
-      .shots img:last-child { transform: none; }
-      ul.features { columns: 1; }
+      .hero { grid-template-columns: 1fr; padding: 36px 22px; border-radius: 26px; }
+      .hero-shots .phone:nth-child(2) { transform: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .install { grid-template-columns: 1fr; }
       nav { display: none; }
+    }
+    @media (max-width: 520px) {
+      .grid, .features-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <div class="brand">
+      <a class="brand" href="#">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
         GrowCalc
-      </div>
+      </a>
       <nav>
         <a href="#werkzeuge">Werkzeuge</a>
+        <a href="#funktionen">Funktionen</a>
         <a href="#installation">Installation</a>
+        <a href="#faq">FAQ</a>
         <a href="https://github.com/TheDude1996/GrowCalc">GitHub</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
+    <!-- Hero -->
     <section class="hero">
       <div>
-        <div class="overline">Android · Open Source</div>
-        <h1>Alles für dein Klima, Licht &amp; Dünger.</h1>
-        <p>GrowCalc bündelt die wichtigsten Rechner für Zelt, Gewächshaus und Indoor-Garten – offline, ohne Werbung, mit Dark Mode.</p>
-        <a class="btn btn-light" href="https://github.com/TheDude1996/GrowCalc/releases/latest">APK herunterladen (Beta)</a>
-        <a class="btn btn-ghost" href="https://github.com/TheDude1996/GrowCalc">Quellcode</a>
+        <div class="overline">Android · Open Source · Beta</div>
+        <h1>Alles für dein Klima, Licht, Dünger &amp; Wasser.</h1>
+        <p>GrowCalc bündelt sechs Rechner für Zelt, Gewächshaus und Indoor-Garten in einer App – vom Abluft-Volumenstrom über VPD und DLI bis zur Lichtmessung mit dem Handy-Sensor. Offline, ohne Werbung, mit Dark Mode.</p>
+        <a class="btn btn-light" href="https://github.com/TheDude1996/GrowCalc/releases/latest">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+          APK herunterladen
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/TheDude1996/GrowCalc">
+          <svg viewBox="0 0 24 24"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+          Quellcode
+        </a>
+        <div class="hero-meta">Aktuell: Version 0.4.0-beta · Android 7.0 oder neuer</div>
       </div>
-      <div class="shots">
-        <img src="screenshots/dashboard.png" alt="GrowCalc Dashboard" />
-        <img src="screenshots/vpd.png" alt="VPD-Rechner mit Ergebnis" />
+      <div class="hero-shots">
+        <div class="phone"><img src="screenshots/dashboard.png" alt="GrowCalc Dashboard mit sechs Rechner-Kacheln" /></div>
+        <div class="phone"><img src="screenshots/ppfd.png" alt="PPFD-Lichtmesser zeigt 511 µmol/m²/s" /></div>
       </div>
     </section>
 
+    <div class="stats">
+      <div class="stat"><b>6</b><span>Rechner in einer App</span></div>
+      <div class="stat"><b>0</b><span>Berechtigungen, keine Werbung</span></div>
+      <div class="stat"><b>100&nbsp;%</b><span>offline nutzbar</span></div>
+      <div class="stat"><b>GPL-3.0</b><span>freie Software</span></div>
+    </div>
+
+    <!-- Tool overview -->
     <h2 id="werkzeuge">Werkzeuge</h2>
+    <p class="lead">Jeder Rechner hat seine eigene Seite und ist direkt vom Dashboard oder über das Seitenmenü erreichbar. Tippe auf eine Kachel, um mehr zu erfahren.</p>
     <div class="grid">
-      <div class="card">
+      <a class="card" href="#volumenstrom">
         <div class="badge" style="background:var(--air)"><svg viewBox="0 0 24 24" style="fill:var(--air-i)"><path d="M14.5,17c0,1.65 -1.35,3 -3,3s-3,-1.35 -3,-3h2c0,0.55 0.45,1 1,1s1,-0.45 1,-1s-0.45,-1 -1,-1H2v-2h9.5C13.15,14 14.5,15.35 14.5,17zM19,6.5C19,4.57 17.43,3 15.5,3S12,4.57 12,6.5h2C14,5.67 14.67,5 15.5,5S17,5.67 17,6.5S16.33,8 15.5,8H2v2h13.5C17.43,10 19,8.43 19,6.5zM18.5,11H2v2h16.5c0.83,0 1.5,0.67 1.5,1.5S19.33,16 18.5,16v2c1.93,0 3.5,-1.57 3.5,-3.5S20.43,11 18.5,11z"/></svg></div>
         <h3>Volumenstrom</h3>
         <p>Luftleistung in m³/h aus Rohrdurchmesser und Strömungsgeschwindigkeit.</p>
-      </div>
-      <div class="card">
+      </a>
+      <a class="card" href="#vpd">
         <div class="badge" style="background:var(--vpd)"><svg viewBox="0 0 24 24" style="fill:var(--vpd-i)"><path d="M12,2c-5.33,4.55 -8,8.48 -8,11.8c0,4.98 3.8,8.2 8,8.2s8,-3.22 8,-8.2C20,10.48 17.33,6.55 12,2z"/></svg></div>
         <h3>VPD</h3>
-        <p>Dampfdruckdefizit für Luft und Blatt – mit Ampel-Bewertung von „Schimmelgefahr“ bis „Welkgefahr“.</p>
-      </div>
-      <div class="card">
+        <p>Dampfdruckdefizit für Luft und Blatt – mit Ampel von „Schimmelgefahr“ bis „Welkgefahr“.</p>
+      </a>
+      <a class="card" href="#dli">
         <div class="badge" style="background:var(--dli)"><svg viewBox="0 0 24 24" style="fill:var(--dli-i)"><path d="M6.76,4.84l-1.8,-1.79 -1.41,1.41 1.79,1.79 1.42,-1.41zM4,10.5L1,10.5v2h3v-2zM13,0.55h-2L11,3.5h2L13,0.55zM20.45,4.46l-1.41,-1.41 -1.79,1.79 1.41,1.41 1.79,-1.79zM17.24,18.16l1.79,1.8 1.41,-1.41 -1.8,-1.79 -1.4,1.4zM20,10.5v2h3v-2h-3zM12,5.5c-3.31,0 -6,2.69 -6,6s2.69,6 6,6 6,-2.69 6,-6 -2.69,-6 -6,-6zM11,22.45h2L13,19.5h-2v2.95zM3.55,18.54l1.41,1.41 1.79,-1.8 -1.41,-1.41 -1.79,1.8z"/></svg></div>
         <h3>DLI</h3>
-        <p>Daily Light Integral aus PPFD und Beleuchtungsdauer, inkl. Schnellwahl für 12–24 h.</p>
-      </div>
-      <div class="card">
+        <p>Tageslichtintegral aus PPFD und Beleuchtungsdauer, mit Schnellwahl 12–24 h.</p>
+      </a>
+      <a class="card" href="#duenger">
         <div class="badge" style="background:var(--nut)"><svg viewBox="0 0 24 24" style="fill:var(--nut-i)"><path d="M19.8,18.4L14,10.67V6.5l1.35,-1.69C15.61,4.48 15.38,4 14.96,4H9.04C8.62,4 8.39,4.48 8.65,4.81L10,6.5v4.17L4.2,18.4C3.71,19.06 4.18,20 5,20h14C19.82,20 20.29,19.06 19.8,18.4z"/></svg></div>
         <h3>Dünger-Dosierung</h3>
-        <p>Mengen nach Herstellerschema mit Ca:Mg-Korrektur anhand deiner Wasseranalyse.</p>
-      </div>
+        <p>Mengen nach Herstellerschema inkl. Ca:Mg-Korrektur anhand deiner Wasseranalyse.</p>
+      </a>
+      <a class="card" href="#ppfd">
+        <div class="badge" style="background:var(--ppfd)"><svg viewBox="0 0 24 24" style="fill:var(--ppfd-i)"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg></div>
+        <h3>PPFD-Lichtmesser</h3>
+        <p>Live-Messung mit dem Lichtsensor des Handys, umgerechnet in µmol/m²/s.</p>
+      </a>
+      <a class="card" href="#bewaesserung">
+        <div class="badge" style="background:var(--irr)"><svg viewBox="0 0 24 24" style="fill:var(--irr-i)"><path d="M3 4h18v2h-5v2h-2V6h-4v2H8V6H3V4zm4.5 8.5c0 1.1-.9 2-2 2s-2-.9-2-2c0-1.3 2-3.5 2-3.5s2 2.2 2 3.5zm7 4c0 1.4-1.1 2.5-2.5 2.5S9.5 17.9 9.5 16.5c0-1.7 2.5-4.5 2.5-4.5s2.5 2.8 2.5 4.5z"/></svg></div>
+        <h3>Bewässerung</h3>
+        <p>Wassermenge pro Topf aus Tropfern und Laufzeit – inklusive Tagesplan und Tank-Reichweite.</p>
+      </a>
     </div>
 
-    <h2>Merkmale</h2>
-    <ul class="features">
-      <li>Material-3-Design mit Dark Mode</li>
-      <li>Komplett offline, keine Berechtigungen</li>
-      <li>Eingabe mit Punkt oder Komma</li>
-      <li>Farbcodierte Ergebnisse</li>
-      <li>Schemata von Green House Feeding, Athena, Advanced Nutrients</li>
-      <li>Open Source unter GPL-3.0</li>
-    </ul>
-    <p>Die Formeln hinter allen Rechnern sind transparent dokumentiert: <a href="https://github.com/TheDude1996/GrowCalc/blob/main/docs/BERECHNUNGEN.md">Berechnungen &amp; Formeln</a>.</p>
+    <!-- Feature details -->
+    <h2 id="funktionen">Die Funktionen im Detail</h2>
+    <p class="lead">Alle Berechnungen sind transparent dokumentiert und mit Unit-Tests abgesichert. Ergebnisse werden farblich bewertet, damit du auf einen Blick siehst, ob du im grünen Bereich bist.</p>
 
+    <section class="feature" id="volumenstrom">
+      <div class="shots"><div class="phone"><img src="screenshots/volumenstrom.png" alt="Volumenstromrechner: 200 mm bei 5,5 m/s ergeben 622 m³/h" loading="lazy" /></div></div>
+      <div>
+        <div class="feature-head">
+          <div class="badge" style="background:var(--air)"><svg viewBox="0 0 24 24" style="fill:var(--air-i)"><path d="M14.5,17c0,1.65 -1.35,3 -3,3s-3,-1.35 -3,-3h2c0,0.55 0.45,1 1,1s1,-0.45 1,-1s-0.45,-1 -1,-1H2v-2h9.5C13.15,14 14.5,15.35 14.5,17zM19,6.5C19,4.57 17.43,3 15.5,3S12,4.57 12,6.5h2C14,5.67 14.67,5 15.5,5S17,5.67 17,6.5S16.33,8 15.5,8H2v2h13.5C17.43,10 19,8.43 19,6.5zM18.5,11H2v2h16.5c0.83,0 1.5,0.67 1.5,1.5S19.33,16 18.5,16v2c1.93,0 3.5,-1.57 3.5,-3.5S20.43,11 18.5,11z"/></svg></div>
+          <div><div class="kicker">Lüftung</div><h3>Volumenstromrechner</h3></div>
+        </div>
+        <p>Wie viel Luft bewegt dein Abluftsystem wirklich? Wähle den Rohrdurchmesser, gib die gemessene Strömungsgeschwindigkeit im Kanal ein (z.&nbsp;B. per Anemometer) und GrowCalc berechnet den Volumenstrom in m³/h. So prüfst du, ob Lüfter und Filter zur Zeltgröße passen und ob die Luft oft genug ausgetauscht wird.</p>
+        <ul class="checks">
+          <li>Gängige Rohrdurchmesser von 125 bis 300 mm zur Auswahl</li>
+          <li>Geschwindigkeit in m/s – mit Punkt oder Komma</li>
+          <li>Ergebnis sofort in m³/h, ein Tipp setzt alles zurück</li>
+        </ul>
+        <div class="formula"><small>So wird gerechnet</small>Q [m³/h] = π · (d / 2000)² · v · 3600</div>
+      </div>
+    </section>
+
+    <section class="feature flip" id="vpd">
+      <div class="shots"><div class="phone"><img src="screenshots/vpd.png" alt="VPD-Rechner: 26 °C, 60 % rF, Blatt-Offset −2 ergibt Leaf-VPD 0,97 kPa – Ideal" loading="lazy" /></div></div>
+      <div>
+        <div class="feature-head">
+          <div class="badge" style="background:var(--vpd)"><svg viewBox="0 0 24 24" style="fill:var(--vpd-i)"><path d="M12,2c-5.33,4.55 -8,8.48 -8,11.8c0,4.98 3.8,8.2 8,8.2s8,-3.22 8,-8.2C20,10.48 17.33,6.55 12,2z"/></svg></div>
+          <div><div class="kicker">Klima</div><h3>VPD-Rechner</h3></div>
+        </div>
+        <p>Das Dampfdruckdefizit (Vapor Pressure Deficit) zeigt, wie stark die Luft der Pflanze Wasser „entzieht“ – und ist damit aussagekräftiger als die Luftfeuchte allein. Aus Lufttemperatur, relativer Feuchte und einem optionalen Blatt-Offset berechnet GrowCalc den VPD von Luft und Blatt sowie die Blatttemperatur.</p>
+        <table class="scale">
+          <tr><td><span class="dot" style="background:#1e5fa8"></span>&lt; 0,4 kPa</td><td>Niedrig – Schimmelgefahr</td></tr>
+          <tr><td><span class="dot" style="background:#2f8f4e"></span>0,4 – 1,2 kPa</td><td>Ideal – optimale Transpiration</td></tr>
+          <tr><td><span class="dot" style="background:#e08a00"></span>1,2 – 1,6 kPa</td><td>Hoch – Stress</td></tr>
+          <tr><td><span class="dot" style="background:#c62828"></span>&gt; 1,6 kPa</td><td>Sehr hoch – Welkgefahr</td></tr>
+        </table>
+        <div class="formula"><small>So wird gerechnet (Tetens)</small>SVP(T) = 0,61078 · e^(17,27·T / (T+237,3))
+VPD_Blatt = SVP(T_Luft + Offset) − SVP(T_Luft) · rF/100</div>
+      </div>
+    </section>
+
+    <section class="feature" id="dli">
+      <div class="shots"><div class="phone"><img src="screenshots/dli.png" alt="DLI-Rechner: 600 µmol bei 18 h ergeben 38,88 mol/m²/Tag" loading="lazy" /></div></div>
+      <div>
+        <div class="feature-head">
+          <div class="badge" style="background:var(--dli)"><svg viewBox="0 0 24 24" style="fill:var(--dli-i)"><path d="M12,5.5c-3.31,0 -6,2.69 -6,6s2.69,6 6,6 6,-2.69 6,-6 -2.69,-6 -6,-6zM11,0.55h2V3.5h-2zM11,19.5h2v2.95h-2zM1,10.5h3v2H1zM20,10.5h3v2h-3zM3.55,4.46l1.41,-1.41 1.8,1.79 -1.42,1.41zM17.24,18.16l1.4,-1.4 1.8,1.79 -1.41,1.41zM17.25,4.84l1.79,-1.79 1.41,1.41 -1.79,1.79zM3.55,18.54l1.79,-1.8 1.41,1.41 -1.79,1.8z"/></svg></div>
+          <div><div class="kicker">Licht</div><h3>DLI-Rechner</h3></div>
+        </div>
+        <p>Das Daily Light Integral gibt an, wie viel nutzbares Licht deine Pflanzen über den ganzen Tag bekommen. Gib die Lichtintensität (PPFD) und die Beleuchtungsdauer ein – die Schnellwahl-Chips für 12, 16, 18, 20 und 24 Stunden decken die typischen Lichtzyklen ab. Den PPFD-Wert kannst du direkt mit dem <a href="#ppfd">PPFD-Lichtmesser</a> bestimmen.</p>
+        <table class="scale">
+          <tr><td>&lt; 10</td><td>Niedrig – Schattenpflanzen / Bewurzelung</td></tr>
+          <tr><td>10 – 20</td><td>Mittel – Wachstumsphase</td></tr>
+          <tr><td>20 – 40</td><td>Hoch – Blüte / Fruchtbildung</td></tr>
+          <tr><td>&gt; 40</td><td>Sehr hoch – CO₂-Einsatz sinnvoll</td></tr>
+        </table>
+        <div class="formula"><small>So wird gerechnet</small>DLI [mol/m²/Tag] = PPFD · Stunden · 0,0036</div>
+      </div>
+    </section>
+
+    <section class="feature flip" id="duenger">
+      <div class="shots two">
+        <div class="phone"><img src="screenshots/duenger_input.png" alt="Dosierrechner: Auswahl von Hersteller, Linie, Programm und Woche" loading="lazy" /></div>
+        <div class="phone"><img src="screenshots/duenger.png" alt="Dosierrechner-Ergebnis mit Mengen, EC und Nährstoffanalyse" loading="lazy" /></div>
+      </div>
+      <div>
+        <div class="feature-head">
+          <div class="badge" style="background:var(--nut)"><svg viewBox="0 0 24 24" style="fill:var(--nut-i)"><path d="M19.8,18.4L14,10.67V6.5l1.35,-1.69C15.61,4.48 15.38,4 14.96,4H9.04C8.62,4 8.39,4.48 8.65,4.81L10,6.5v4.17L4.2,18.4C3.71,19.06 4.18,20 5,20h14C19.82,20 20.29,19.06 19.8,18.4z"/></svg></div>
+          <div><div class="kicker">Nährstoffe</div><h3>Dosierrechner (Dünger)</h3></div>
+        </div>
+        <p>Wähle Hersteller, Produktlinie, Programm und die aktuelle Woche – GrowCalc rechnet die Düngermengen für dein Mischvolumen aus und aktualisiert das Ergebnis live bei jeder Änderung. Mit deiner Wasseranalyse (Calcium und Magnesium) wird die Calcium-Gabe so angepasst, dass das gewünschte Ca:Mg-Verhältnis erreicht wird.</p>
+        <ul class="checks">
+          <li>Schemata von Green House Feeding, Athena und Advanced Nutrients</li>
+          <li>Wochen-/Phasenregler und Ziel-Verhältnis Ca:Mg (2,0 – 3,5 : 1)</li>
+          <li>Berücksichtigt Ausgangs-EC und Ca/Mg aus dem Leitungswasser</li>
+          <li>Geschätzter Gesamt-EC und Analyse der Endlösung: N, P₂O₅, K₂O, Ca, Mg in mg/L</li>
+          <li>Ergänzt Bittersalz automatisch, wenn zu wenig Magnesium vorhanden ist</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="feature" id="ppfd">
+      <div class="shots"><div class="phone"><img src="screenshots/ppfd.png" alt="PPFD-Lichtmesser im Live-Modus: LED Vollspektrum, 511 µmol/m²/s" loading="lazy" /></div></div>
+      <div>
+        <div class="feature-head">
+          <div class="badge" style="background:var(--ppfd)"><svg viewBox="0 0 24 24" style="fill:var(--ppfd-i)"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg></div>
+          <div><div class="kicker">Licht messen</div><h3>PPFD-Lichtmesser</h3></div>
+        </div>
+        <p>Dein Handy wird zum Lichtmessgerät: Lege es flach unter die Lampe, Display nach oben, und GrowCalc zeigt live die Photonenflussdichte in µmol/m²/s. Der Umgebungslicht-Sensor misst Lux, die App rechnet passend zur gewählten Lichtquelle in PPFD um und glättet den Messwert.</p>
+        <ul class="checks">
+          <li>Lichtquelle per Wischen oder Antippen: Sonne, LED Vollspektrum, HPS, Leuchtstoffröhre</li>
+          <li>Großer runder Button zum Halten bzw. Weitermessen</li>
+          <li>Warnung, wenn der Sensor übersteuert und der Wert unzuverlässig wird</li>
+          <li>Kalibrierfaktor in den Einstellungen – z.&nbsp;B. abgeglichen mit einem echten Quantum-Sensor</li>
+        </ul>
+        <div class="formula"><small>Umrechnungsfaktoren (µmol/m²/s pro Lux)</small>Sonne 0,018 · LED 0,014 · HPS 0,014 · Leuchtstoff 0,013</div>
+      </div>
+    </section>
+
+    <section class="feature flip" id="bewaesserung">
+      <div class="shots two">
+        <div class="phone"><img src="screenshots/bewaesserung.png" alt="Bewässerungsrechner: Tropfer 4 L/h, 2 Tropfer pro Topf, zwei Bewässerungen à 3 Minuten" loading="lazy" /></div>
+        <div class="phone"><img src="screenshots/bewaesserung_ergebnis.png" alt="Bewässerungsergebnis: 800 ml pro Topf und Tag, 4,8 L für 6 Töpfe, Tank reicht 12,5 Tage" loading="lazy" /></div>
+      </div>
+      <div>
+        <div class="feature-head">
+          <div class="badge" style="background:var(--irr)"><svg viewBox="0 0 24 24" style="fill:var(--irr-i)"><path d="M3 4h18v2h-5v2h-2V6h-4v2H8V6H3V4zm4.5 8.5c0 1.1-.9 2-2 2s-2-.9-2-2c0-1.3 2-3.5 2-3.5s2 2.2 2 3.5zm7 4c0 1.4-1.1 2.5-2.5 2.5S9.5 17.9 9.5 16.5c0-1.7 2.5-4.5 2.5-4.5s2.5 2.8 2.5 4.5z"/></svg></div>
+          <div><div class="kicker">Wasser</div><h3>Bewässerungsrechner</h3></div>
+        </div>
+        <p>Plane deine Tropfbewässerung: Aus dem Durchfluss pro Tropfer, der Anzahl Tropfer pro Topf und der Laufzeit berechnet GrowCalc die Wassermenge pro Topf – für jede einzelne Bewässerung und für den ganzen Tag. Mit Topfanzahl und Tankvolumen siehst du außerdem, wie lange dein Tank reicht.</p>
+        <ul class="checks">
+          <li>Farbcode-Presets für gängige Tropfer (1,1 – 8,0 L/h) oder eigener Wert</li>
+          <li>„Durchfluss auslitern“: echten Durchfluss mit dem Messbecher ermitteln</li>
+          <li>Mehrere Bewässerungen pro Tag mit Uhrzeit, Laufzeit in Sekunden oder Minuten</li>
+          <li>Umkehrmodus: Laufzeit für eine Zielmenge berechnen und direkt übernehmen</li>
+          <li>Setups speichern – die letzten Eingaben bleiben erhalten</li>
+        </ul>
+        <div class="formula"><small>So wird gerechnet</small>Menge [ml] = Durchfluss [L/h] · Tropfer · Laufzeit [s] / 3,6
+Tank-Reichweite [Tage] = Tank [L] · 1000 / Tagesmenge [ml]</div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <h2>Galerie</h2>
+    <p class="lead">Material-3-Design mit eigenem Farbschema – hell und dunkel. Zum Vergrößern antippen.</p>
+    <div class="gallery">
+      <figure><a href="screenshots/dashboard.png"><div class="phone"><img src="screenshots/dashboard.png" alt="Dashboard hell" loading="lazy" /></div></a><figcaption>Dashboard</figcaption></figure>
+      <figure><a href="screenshots/dashboard_dark.png"><div class="phone"><img src="screenshots/dashboard_dark.png" alt="Dashboard im Dark Mode" loading="lazy" /></div></a><figcaption>Dark Mode</figcaption></figure>
+      <figure><a href="screenshots/drawer.png"><div class="phone"><img src="screenshots/drawer.png" alt="Navigationsmenü" loading="lazy" /></div></a><figcaption>Navigationsmenü</figcaption></figure>
+      <figure><a href="screenshots/vpd.png"><div class="phone"><img src="screenshots/vpd.png" alt="VPD-Rechner" loading="lazy" /></div></a><figcaption>VPD</figcaption></figure>
+      <figure><a href="screenshots/ppfd.png"><div class="phone"><img src="screenshots/ppfd.png" alt="PPFD-Lichtmesser" loading="lazy" /></div></a><figcaption>PPFD-Lichtmesser</figcaption></figure>
+      <figure><a href="screenshots/duenger.png"><div class="phone"><img src="screenshots/duenger.png" alt="Dosierrechner" loading="lazy" /></div></a><figcaption>Dosierrechner</figcaption></figure>
+      <figure><a href="screenshots/bewaesserung.png"><div class="phone"><img src="screenshots/bewaesserung.png" alt="Bewässerungsrechner" loading="lazy" /></div></a><figcaption>Bewässerung</figcaption></figure>
+    </div>
+
+    <!-- Highlights -->
+    <h2>Merkmale</h2>
+    <p class="lead">Kleine Dinge, die den Alltag im Growroom leichter machen.</p>
+    <div class="features-list">
+      <div class="mini"><b>🌙 Dark Mode</b><span>Folgt automatisch dem System – angenehm im abgedunkelten Raum.</span></div>
+      <div class="mini"><b>✈️ Komplett offline</b><span>Keine Internetverbindung, kein Konto, keine Tracker.</span></div>
+      <div class="mini"><b>🔒 Keine Berechtigungen</b><span>Auch der Lichtsensor funktioniert ohne Freigabe.</span></div>
+      <div class="mini"><b>🔢 Punkt oder Komma</b><span>Dezimalzahlen so eingeben, wie du es gewohnt bist.</span></div>
+      <div class="mini"><b>🚦 Farbcodierte Ergebnisse</b><span>Ideal, niedrig, hoch, kritisch – sofort erkennbar.</span></div>
+      <div class="mini"><b>📖 Offene Formeln</b><span>Alle Berechnungen sind <a href="https://github.com/TheDude1996/GrowCalc/blob/main/docs/BERECHNUNGEN.md">dokumentiert</a> und getestet.</span></div>
+    </div>
+
+    <!-- Install -->
     <h2 id="installation">Installation</h2>
-    <p>Voraussetzung: Android 7.0 (API 24) oder neuer.</p>
-    <p><strong>Einfach:</strong> Die APK aus den <a href="https://github.com/TheDude1996/GrowCalc/releases/latest">GitHub-Releases</a> aufs Handy laden, antippen und die Installation aus unbekannten Quellen erlauben.</p>
-    <p><strong>Selbst bauen</strong> (Android Studio mit SDK 36):</p>
+    <p class="lead">Voraussetzung: Android 7.0 (API 24) oder neuer.</p>
+    <div class="install">
+      <div class="mini">
+        <b>APK installieren (empfohlen)</b>
+        <ol>
+          <li>Die Datei <code>GrowCalc-&lt;version&gt;.apk</code> aus den <a href="https://github.com/TheDude1996/GrowCalc/releases/latest">GitHub-Releases</a> auf dem Handy herunterladen.</li>
+          <li>Datei antippen und beim ersten Mal „Apps aus unbekannten Quellen installieren“ erlauben.</li>
+          <li>Installieren und GrowCalc öffnen. Updates installierst du genauso – deine Daten bleiben erhalten.</li>
+        </ol>
+      </div>
+      <div class="mini">
+        <b>Selbst bauen</b>
+        <span>Android Studio mit SDK 36 und JDK 17+:</span>
 <pre><code>git clone https://github.com/TheDude1996/GrowCalc.git
 cd GrowCalc
-./gradlew installDebug      # Windows: gradlew.bat installDebug</code></pre>
+./gradlew installDebug   # Windows: gradlew.bat</code></pre>
+      </div>
+    </div>
+    <div class="note">⚠️ <b>Beta:</b> Die App ist noch in Entwicklung. Fehler und Wünsche gerne über die <a href="https://github.com/TheDude1996/GrowCalc/issues">Issues</a> melden.</div>
+
+    <!-- FAQ -->
+    <h2 id="faq">Häufige Fragen</h2>
+    <details>
+      <summary>Wie genau ist die PPFD-Messung mit dem Handy?</summary>
+      <p>Handy-Lichtsensoren messen Lux und sind nicht für Pflanzenlicht gebaut. Die Umrechnung liefert deshalb Richtwerte, die je nach Gerät spürbar abweichen können. Mit dem Kalibrierfaktor in den Einstellungen kannst du die Messung an ein echtes Quantum-Messgerät anpassen. Bei sehr hellem Licht kann der Sensor übersteuern – die App warnt dann.</p>
+    </details>
+    <details>
+      <summary>Welcher VPD-Wert ist der richtige?</summary>
+      <p>Als grobe Orientierung gilt 0,4–0,8 kPa für Stecklinge und junge Pflanzen, 0,8–1,2 kPa für Wachstum und Blüte. GrowCalc bewertet den Blatt-VPD; der Blatt-Offset (meist −1 bis −3 °C) berücksichtigt, dass Blätter kühler sind als die Luft.</p>
+    </details>
+    <details>
+      <summary>Warum ist mein Dünger nicht dabei?</summary>
+      <p>Bisher sind Schemata von Green House Feeding, Athena und Advanced Nutrients hinterlegt. Weitere Hersteller können ergänzt werden – Vorschläge mit Link zum offiziellen Düngeschema gerne als Issue oder Pull Request.</p>
+    </details>
+    <details>
+      <summary>Kostet die App etwas oder sammelt sie Daten?</summary>
+      <p>Nein. GrowCalc ist kostenlos, werbefrei und Open Source unter der GPL-3.0. Die App benötigt keine Berechtigungen und hat keinen Internetzugriff.</p>
+    </details>
+    <details>
+      <summary>Gibt es GrowCalc im Play Store oder für iOS?</summary>
+      <p>Aktuell wird die App als APK über GitHub verteilt. Eine iOS-Version ist nicht geplant.</p>
+    </details>
   </main>
 
   <footer>
     <div class="wrap">
-      GrowCalc · GPL-3.0 · <a href="https://github.com/TheDude1996/GrowCalc">Quellcode auf GitHub</a><br />
-      Ergebnisse sind Richtwerte. Markennamen gehören ihren jeweiligen Inhabern.
+      <div>
+        <b>GrowCalc</b> · GPL-3.0 · <a href="https://github.com/TheDude1996/GrowCalc">Quellcode auf GitHub</a> · <a href="https://github.com/TheDude1996/GrowCalc/blob/main/CHANGELOG.md">Änderungsprotokoll</a><br />
+        Ergebnisse sind Richtwerte. Düngeschemata nach Herstellerangaben – im Zweifel gilt die aktuelle Angabe des Herstellers.
+      </div>
+      <div>Markennamen gehören ihren jeweiligen Inhabern.</div>
     </div>
   </footer>
 </body>
