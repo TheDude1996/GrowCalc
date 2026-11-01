@@ -9,6 +9,9 @@
   <meta property="og:description" content="Sechs Rechner für Klima, Licht, Dünger und Bewässerung – offline, ohne Werbung, Open Source." />
   <meta property="og:image" content="https://thedude1996.github.io/GrowCalc/screenshots/dashboard.png" />
   <meta name="theme-color" content="#2d6a4f" />
+  <link rel="alternate" hreflang="de" href="https://thedude1996.github.io/GrowCalc/" />
+  <link rel="alternate" hreflang="en" href="https://thedude1996.github.io/GrowCalc/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://thedude1996.github.io/GrowCalc/en/" />
   <style>
     :root {
       --bg: #f5faf5; --surface: #edf4ee; --surface-2: #e3ede5; --text: #171d19; --muted: #404943;
@@ -43,6 +46,10 @@
     .brand svg { width: 30px; height: 30px; fill: var(--primary); }
     nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: .95rem; }
     nav a:hover { color: var(--primary); }
+    .header-right { display: flex; align-items: center; gap: 8px; }
+    .lang { display: inline-flex; background: var(--surface); border-radius: 999px; padding: 3px; margin-left: 16px; font-size: .85rem; font-weight: 600; }
+    .lang a, .lang span { padding: 5px 12px; border-radius: 999px; text-decoration: none; color: var(--muted); }
+    .lang span { background: var(--primary); color: var(--on-primary); }
 
     /* Hero */
     .hero { background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); color: #fff;
@@ -164,13 +171,16 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
         GrowCalc
       </a>
-      <nav>
-        <a href="#werkzeuge">Werkzeuge</a>
-        <a href="#funktionen">Funktionen</a>
-        <a href="#installation">Installation</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://github.com/TheDude1996/GrowCalc">GitHub</a>
-      </nav>
+      <div class="header-right">
+        <nav>
+          <a href="#werkzeuge">Werkzeuge</a>
+          <a href="#funktionen">Funktionen</a>
+          <a href="#installation">Installation</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://github.com/TheDude1996/GrowCalc">GitHub</a>
+        </nav>
+        <div class="lang" aria-label="Sprache"><span aria-current="true">DE</span><a href="en/" hreflang="en" lang="en">EN</a></div>
+      </div>
     </div>
   </header>
 

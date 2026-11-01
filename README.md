@@ -1,6 +1,6 @@
 # GrowCalc 🌱
 
-🌐 **Projektseite:** https://thedude1996.github.io/GrowCalc/
+🌐 **Projektseite:** https://thedude1996.github.io/GrowCalc/ · [English](https://thedude1996.github.io/GrowCalc/en/)
 
 **GrowCalc** ist eine Android-App mit Rechnern für den Indoor-Anbau: Lüftung, Klima, Licht, Düngung und Bewässerung – übersichtlich, offline und ohne Werbung.
 
