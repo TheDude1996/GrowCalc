@@ -2,6 +2,14 @@
 
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/).
 
+## [0.4.0-beta] – 2026-11-01
+
+### Hinzugefügt
+- Bewässerungsrechner: Menge pro Topf aus Tropfer-Durchfluss (Farbcode-Presets 1,1–8,0 L/h oder eigener Wert), Tropfern pro Topf und Laufzeit
+- Mehrere Bewässerungen pro Tag mit Uhrzeit und Laufzeit in Sekunden oder Minuten, Tagesmenge für alle Töpfe und Tank-Reichweite
+- Umkehrmodus: Laufzeit für eine Zielmenge berechnen und als Bewässerung übernehmen
+- Durchfluss auslitern mit dem Messbecher sowie gespeicherte Setups; die letzten Eingaben bleiben erhalten
+
 ## [0.3.0-beta] – 2026-11-01
 
 ### Geändert

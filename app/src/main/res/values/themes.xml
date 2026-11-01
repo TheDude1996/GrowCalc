@@ -133,6 +133,16 @@
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
+    <!-- Filter chip with a colored dot in the dripper's color code -->
+    <style name="Widget.Grow.Chip.Dripper" parent="Widget.Material3.Chip.Filter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="chipIcon">@drawable/bg_dripper_dot</item>
+        <item name="chipIconVisible">true</item>
+        <item name="chipIconSize">16dp</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
     <style name="Grow.StatTile">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

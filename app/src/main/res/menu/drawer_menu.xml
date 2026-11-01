@@ -27,6 +27,10 @@
             android:id="@+id/nav_ppfd"
             android:icon="@drawable/ic_tool_ppfd"
             android:title="@string/menu_ppfd" />
+        <item
+            android:id="@+id/nav_irrigation"
+            android:icon="@drawable/ic_tool_water"
+            android:title="@string/menu_irrigation" />
     </group>
     <item android:title="Allgemein">
         <menu>

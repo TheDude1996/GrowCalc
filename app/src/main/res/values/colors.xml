@@ -44,6 +44,15 @@
     <color name="accent_nutrient">#2F6B12</color>
     <color name="accent_ppfd_bg">#EADDFF</color>
     <color name="accent_ppfd">#5B3E96</color>
+    <color name="accent_water_bg">#CFE6F7</color>
+    <color name="accent_water">#0B5C8A</color>
+
+    <!-- Dripper color codes (same in light and dark mode) -->
+    <color name="dripper_purple">#B04FC0</color>
+    <color name="dripper_blue">#1E6FD9</color>
+    <color name="dripper_brown">#8B5A2B</color>
+    <color name="dripper_green">#2E9E4A</color>
+    <color name="dripper_red">#D32F2F</color>
 
     <!-- PPFD meter (always dark, same in light and dark mode) -->
     <color name="meter_bg_top">#0B1A13</color>

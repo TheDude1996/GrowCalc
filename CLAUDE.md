@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-GrowCalc – Android-App (Kotlin, Views/Fragments, MVVM) mit Rechnern für Volumenstrom, VPD, DLI und Nährstoffe.
+GrowCalc – Android-App (Kotlin, Views/Fragments, MVVM) mit Rechnern für Volumenstrom, VPD, DLI, Nährstoffe, PPFD und Bewässerung.
 
 - Paketname / applicationId: `io.github.thedude1996.growcalc`
 - Launcher-Activity: `io.github.thedude1996.growcalc/.MainActivity`
@@ -51,7 +51,7 @@ Deinstallieren: `adb uninstall io.github.thedude1996.growcalc`
 .\gradlew lint
 ```
 
-Die Rechenlogik liegt in `calculation/` (`ClimateCalculator`, `NutrientCalculator`) und ist per Unit-Test abgedeckt – Änderungen dort immer mit Tests begleiten.
+Die Rechenlogik liegt in `calculation/` (`ClimateCalculator`, `NutrientCalculator`, `LuxPpfdConverter`, `IrrigationCalculator`) und ist per Unit-Test abgedeckt – Änderungen dort immer mit Tests begleiten.
 
 ## Hinweise
 

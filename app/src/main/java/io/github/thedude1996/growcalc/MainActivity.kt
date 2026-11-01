@@ -13,6 +13,7 @@ import io.github.thedude1996.growcalc.fragments.VolumenstromFragment
 import io.github.thedude1996.growcalc.fragments.VpdFragment
 import io.github.thedude1996.growcalc.fragments.DliFragment
 import io.github.thedude1996.growcalc.fragments.NutrientFragment
+import io.github.thedude1996.growcalc.fragments.IrrigationFragment
 import io.github.thedude1996.growcalc.fragments.PpfdFragment
 import io.github.thedude1996.growcalc.fragments.SettingsFragment
 import com.google.android.material.appbar.MaterialToolbar
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_dli -> navigateToDli()
                 R.id.nav_nutrient -> navigateToNutrient()
                 R.id.nav_ppfd -> navigateToPpfd()
+                R.id.nav_irrigation -> navigateToIrrigation()
                 R.id.nav_info -> showToast(getString(R.string.menu_info))
                 R.id.nav_settings -> navigateToSettings()
             }
@@ -100,6 +102,11 @@ class MainActivity : AppCompatActivity() {
     fun navigateToPpfd() {
         replaceFragment(PpfdFragment(), getString(R.string.menu_ppfd))
         navigationView.setCheckedItem(R.id.nav_ppfd)
+    }
+
+    fun navigateToIrrigation() {
+        replaceFragment(IrrigationFragment(), getString(R.string.menu_irrigation))
+        navigationView.setCheckedItem(R.id.nav_irrigation)
     }
 
     fun navigateToSettings() {
