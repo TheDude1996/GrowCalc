@@ -144,7 +144,7 @@
     <!-- Tool: PPFD Rechner -->
     <string name="menu_ppfd">PPFD Rechner</string>
     <string name="tile_ppfd_title">PPFD</string>
-    <string name="tile_ppfd_desc">Licht messen &amp; umrechnen</string>
+    <string name="tile_ppfd_desc">Licht messen</string>
     <string name="tool_ppfd_title">Lux-zu-PPFD Rechner</string>
     <string name="tool_ppfd_desc">Rechnet Beleuchtungsstärke in PPFD um – oder misst sie live mit dem Lichtsensor deines Handys.</string>
     <string name="label_eingaben">Eingaben</string>
