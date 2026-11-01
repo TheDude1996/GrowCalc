@@ -39,6 +39,8 @@
     <color name="accent_dli">#FFCB6B</color>
     <color name="accent_nutrient_bg">#1E4210</color>
     <color name="accent_nutrient">#A9DD8C</color>
+    <color name="accent_ppfd_bg">#3B2A63</color>
+    <color name="accent_ppfd">#D3BBFF</color>
 
     <color name="status_good_bg">#14482A</color>
     <color name="status_good">#A6EDBA</color>

@@ -42,6 +42,8 @@
     <color name="accent_dli">#8F5B00</color>
     <color name="accent_nutrient_bg">#D4F0C4</color>
     <color name="accent_nutrient">#2F6B12</color>
+    <color name="accent_ppfd_bg">#EADDFF</color>
+    <color name="accent_ppfd">#5B3E96</color>
 
     <!-- Status -->
     <color name="status_good_bg">#C7F0D2</color>

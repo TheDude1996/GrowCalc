@@ -23,6 +23,10 @@
             android:id="@+id/nav_nutrient"
             android:icon="@drawable/ic_tool_nutrient"
             android:title="@string/menu_nutrient" />
+        <item
+            android:id="@+id/nav_ppfd"
+            android:icon="@drawable/ic_tool_ppfd"
+            android:title="@string/menu_ppfd" />
     </group>
     <item android:title="Allgemein">
         <menu>

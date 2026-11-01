@@ -13,6 +13,8 @@ import io.github.thedude1996.growcalc.fragments.VolumenstromFragment
 import io.github.thedude1996.growcalc.fragments.VpdFragment
 import io.github.thedude1996.growcalc.fragments.DliFragment
 import io.github.thedude1996.growcalc.fragments.NutrientFragment
+import io.github.thedude1996.growcalc.fragments.PpfdFragment
+import io.github.thedude1996.growcalc.fragments.SettingsFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 
@@ -66,8 +68,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_vpd -> navigateToVpd()
                 R.id.nav_dli -> navigateToDli()
                 R.id.nav_nutrient -> navigateToNutrient()
+                R.id.nav_ppfd -> navigateToPpfd()
                 R.id.nav_info -> showToast(getString(R.string.menu_info))
-                R.id.nav_settings -> showToast(getString(R.string.menu_settings))
+                R.id.nav_settings -> navigateToSettings()
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -92,6 +95,17 @@ class MainActivity : AppCompatActivity() {
     fun navigateToNutrient() {
         replaceFragment(NutrientFragment(), getString(R.string.menu_nutrient))
         navigationView.setCheckedItem(R.id.nav_nutrient)
+    }
+
+    fun navigateToPpfd() {
+        replaceFragment(PpfdFragment(), getString(R.string.menu_ppfd))
+        navigationView.setCheckedItem(R.id.nav_ppfd)
+    }
+
+    fun navigateToSettings() {
+        replaceFragment(SettingsFragment(), getString(R.string.menu_settings))
+        // Settings is outside the checkable tools group, so clear the highlighted tool
+        navigationView.checkedItem?.isChecked = false
     }
 
     private fun replaceFragment(fragment: Fragment, title: String) {

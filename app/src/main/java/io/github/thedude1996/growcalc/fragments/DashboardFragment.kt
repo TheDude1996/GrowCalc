@@ -36,5 +36,9 @@ class DashboardFragment : Fragment() {
         view.findViewById<MaterialCardView>(R.id.cardNutrient).setOnClickListener {
             (requireActivity() as MainActivity).navigateToNutrient()
         }
+
+        view.findViewById<MaterialCardView>(R.id.cardPpfd).setOnClickListener {
+            (requireActivity() as MainActivity).navigateToPpfd()
+        }
     }
 }
