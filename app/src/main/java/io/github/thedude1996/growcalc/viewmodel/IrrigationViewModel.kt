@@ -11,6 +11,7 @@ import io.github.thedude1996.growcalc.calculation.IrrigationResult
 import io.github.thedude1996.growcalc.calculation.WateringInput
 import io.github.thedude1996.growcalc.settings.IrrigationPreset
 import io.github.thedude1996.growcalc.settings.IrrigationStore
+import java.util.Locale
 import kotlin.math.ceil
 
 data class IrrigationUiState(
@@ -49,7 +50,7 @@ class IrrigationViewModel(private val store: IrrigationStore) : ViewModel() {
 
     /** Uses the measured real flow per dripper as custom value. */
     fun applyCalibratedFlow(flowLph: Double) = update(external = true) {
-        it.copy(preset = null, customFlowText = IrrigationCalculator.formatNumber(flowLph))
+        it.copy(preset = null, customFlowText = IrrigationCalculator.formatNumber(flowLph, Locale.getDefault()))
     }
 
     // --- Waterings -----------------------------------------------------------------------------

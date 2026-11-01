@@ -1,0 +1,285 @@
+<resources>
+    <string name="app_name">Grow Calculator</string>
+    <string name="titel_app">Grow Calculator</string>
+    <string name="nav_header_title">Grow Calculator</string>
+    <string name="nav_header_subtitle">Professional Toolset</string>
+
+    <!-- Navigation -->
+    <string name="menu_home">Dashboard</string>
+    <string name="menu_volumenstrom">Volumenstromrechner</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_formel">Formel</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_drawer_open">Menü öffnen</string>
+    <string name="menu_drawer_close">Menü schließen</string>
+    <string name="menu_section_general">Allgemein</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_welcome">Willkommen</string>
+    <string name="dashboard_subtitle">Wählen Sie ein Tool für Ihr Projekt</string>
+    <string name="dashboard_hero_overline">Grow Calculator</string>
+    <string name="dashboard_hero_title">Alles für dein Klima, Licht &amp; Dünger</string>
+    <string name="dashboard_hero_subtitle">Präzise Rechner für Zelt, Gewächshaus und Indoor-Garten.</string>
+    <string name="dashboard_section_tools">Werkzeuge</string>
+    <string name="tile_vol_title">Volumenstrom</string>
+    <string name="tile_vol_desc">Luftleistung in m³/h</string>
+    <string name="tile_vpd_title">VPD</string>
+    <string name="tile_vpd_desc">Dampfdruckdefizit</string>
+    <string name="tile_dli_title">DLI</string>
+    <string name="tile_dli_desc">Tageslichtintegral</string>
+    <string name="tile_nutrient_title">Dünger</string>
+    <string name="tile_nutrient_desc">Dosierung nach Schema</string>
+    <string name="dashboard_tip_title">Tipp</string>
+    <string name="dashboard_tip_text">Kommazahlen kannst du mit Punkt oder Komma eingeben – beides funktioniert.</string>
+
+    <!-- Common section labels -->
+    <string name="label_ergebnis_section">Ergebnis</string>
+    <string name="label_schema_section">Düngerschema</string>
+    <string name="label_water_section">Wasser &amp; Ansatz</string>
+    <string name="label_analysis_section">Nährstoff-Analyse (mg/L)</string>
+    <string name="label_ca_mg_short">Ca / Mg</string>
+    <string name="label_ratio_short">Ca:Mg</string>
+    <string name="label_n_short">N</string>
+    <string name="label_p_short">P₂O₅</string>
+    <string name="label_k_short">K₂O</string>
+    <string name="label_ca_short">Ca</string>
+    <string name="label_mg_short">Mg</string>
+    <string name="amount_format">%1$.2f %2$s</string>
+    <string name="hint_temp_air_short">Lufttemperatur</string>
+    <string name="hint_humidity_short">Luftfeuchte</string>
+
+    <!-- Tool: Volumenstrom -->
+    <string name="tool_vol_title">Volumenstromrechner Luft</string>
+    <string name="tool_vol_desc">Berechnet den Luftaustausch in m³/h basierend auf Rohrdurchmesser und Geschwindigkeit.</string>
+    <string name="label_eingabe">Eingabe</string>
+    <string name="hint_durchmesser">Rohrdurchmesser wählen</string>
+    <string name="hint_geschwindigkeit">Kanalgeschwindigkeit (m/s)</string>
+    <string name="label_ergebnis">Berechneter Volumenstrom</string>
+
+    <!-- Tool: VPD Rechner -->
+    <string name="menu_vpd">VPD Rechner</string>
+    <string name="tool_vpd_title">VPD Rechner</string>
+    <string name="tool_vpd_desc">Vapor Pressure Deficit basierend auf Blatt- und Lufttemperatur berechnen.</string>
+    <string name="hint_temp_air">Lufttemperatur (°C)</string>
+    <string name="hint_humidity">Rel. Luftfeuchtigkeit (%)</string>
+    <string name="hint_leaf_offset">Blatt-Offset (°C, z.B. -2)</string>
+    <string name="label_vpd_air">Air VPD</string>
+    <string name="label_vpd_leaf">Leaf VPD</string>
+    <string name="label_temp_leaf">Blatttemperatur</string>
+    <string name="status_low">Niedrig (Gefahr: Schimmel)</string>
+    <string name="status_ideal">Ideal (Optimale Transpiration)</string>
+    <string name="status_high">Hoch (Stress für Pflanze)</string>
+    <string name="status_danger">Sehr Hoch (Gefahr: Welken)</string>
+    <string name="fehler_humidity">Feuchtigkeit muss zwischen 0 und 100 liegen.</string>
+    <string name="fehler_temp_range">Temperatur muss zwischen -50 und 60 °C liegen.</string>
+
+    <!-- Tool: DLI Rechner -->
+    <string name="menu_dli">DLI Rechner</string>
+    <string name="tool_dli_title">PPFD-zu-DLI Rechner</string>
+    <string name="tool_dli_desc">Berechnet das Daily Light Integral (DLI) aus PPFD und Beleuchtungsdauer.</string>
+    <string name="hint_ppfd">PPFD (µmol/m²/s)</string>
+    <string name="hint_hours">Beleuchtungsdauer (h/Tag)</string>
+    <string name="label_dli">Daily Light Integral (DLI)</string>
+    <string name="res_dli_format">%.2f mol/m²/Tag</string>
+    <string name="label_presets">Schnellwahl Stunden:</string>
+    <string name="fehler_ppfd_negativ">PPFD darf nicht negativ sein.</string>
+    <string name="fehler_hours_range">Stunden müssen zwischen 0 und 24 liegen.</string>
+    <string name="dli_low">Niedrig (Schattenpflanzen / Bewurzelung)</string>
+    <string name="dli_medium">Mittel (Wachstumsphase / Veg)</string>
+    <string name="dli_high">Hoch (Blütephase / Fruchtbildung)</string>
+    <string name="dli_very_high">Sehr Hoch (Max. Ertrag / CO2-Einsatz sinnvoll)</string>
+
+    <!-- Tool: Nutrient Calculator -->
+    <string name="menu_nutrient">Nährstoff-Rechner</string>
+    <string name="tool_nutrient_title">Dosierrechner</string>
+    <string name="tool_nutrient_desc">Berechnet die Nährstoffmengen nach Herstellerschema.</string>
+    <string name="hint_manufacturer">Hersteller wählen</string>
+    <string name="hint_line">Linie wählen</string>
+    <string name="hint_program">Programm wählen</string>
+    <string name="hint_baseline_ec">Ausgangs-EC Wasser</string>
+    <string name="hint_volume">Mischvolumen (Liter)</string>
+    <string name="label_target_ec">Ziel-EC laut Schema:</string>
+    <string name="label_total_ec">Gesamt-EC (geschätzt):</string>
+    <string name="label_water_base">Wasserbasis (mg/L):</string>
+    <string name="label_final_solution">Endlösung gesamt (mg/L):</string>
+    <string name="label_ca_mg_ratio">Ca:Mg Verhältnis:</string>
+    <string name="ratio_balanced">ausgewogen</string>
+    <string name="ratio_ca_heavy">calciumlastig</string>
+    <string name="ratio_mg_heavy">magnesiumlastig</string>
+    <string name="hint_water_ca">Calcium (mg/L)</string>
+    <string name="hint_water_mg">Magnesium (mg/L)</string>
+    <string name="label_water_analysis_input">Wasseranalyse Eingabe (optional):</string>
+    <string name="label_components">Benötigte Komponenten:</string>
+    <string name="label_notes">Herstellerhinweise:</string>
+    <string name="label_week_slider">Woche / Phase wählen:</string>
+    <string name="label_ratio_slider">Zielverhältnis Ca : Mg:</string>
+    <string name="label_water_analysis">Wasser-Analyse &amp; Ca:Mg-Bilanz:</string>
+    <string name="label_water_ca">Wasser Calcium:</string>
+    <string name="label_water_mg">Wasser Magnesium:</string>
+    <string name="label_fertilizer_mg">Dünger Mg (Schema):</string>
+    <string name="label_epsom_dosage">Zusatz Mg (Bittersalz):</string>
+    <string name="label_total_mg_post">Gesamt Magnesium:</string>
+    <string name="label_target_ca">Ziel-Calcium:</string>
+    <string name="label_extra_ca_needed">Zusatz-Ca benötigt:</string>
+    <string name="label_final_ca_dosage">Empf. Calcium-Dosis:</string>
+    <string name="note_ca_sufficient">Genug Calcium im Wasser vorhanden. Kein Zusatz nötig.</string>
+    <string name="note_ca_heavy">Wasser ist bereits calciumlastig (> 4:1). Calcium-Zusatz vermeiden.</string>
+    <string name="note_ghf_calc_info">Diese Berechnung optimiert das Ca:Mg Verhältnis auf %1$s unter Berücksichtigung aller Komponenten.</string>
+    <string name="week_placeholder">Woche: --</string>
+    <string name="ratio_placeholder">3.0 : 1</string>
+    <string name="phase_format">Phase: %1$s</string>
+    <string name="ratio_target_format">Zielverhältnis: %1$s</string>
+    <string name="ratio_manufacturer">Hersteller-Feedchart</string>
+    <string name="manufacturer_mode_default">Hersteller-Modus (original)</string>
+    <string name="manufacturer_mode_format">Hersteller-Modus (%1$s)</string>
+    <string name="ec_format">EC: %.1f</string>
+    <string name="component_format">%1$s: %2$.2f %3$s</string>
+    <string name="ca_mg_pair_format">%1$.1f / %2$.1f</string>
+    <string name="ratio_format">%.1f : 1</string>
+    <string name="value_format">%.1f</string>
+    <string name="mg_per_liter_format">%.1f mg/L</string>
+    <string name="g_per_liter_format">%.3f g/L</string>
+    <string name="target_ca_format">Ziel: %.1f mg/L</string>
+    <string name="week_label_format">Woche %1$s</string>
+    <string name="component_epsom_salt">Bittersalz</string>
+    <string name="note_athena_pro">Werte sind Gramm pro 10 Liter laut Hersteller, hier auf 1 Liter umgerechnet.</string>
+    <string name="note_athena_blended">Dosierung in ml pro Liter. Nutze CaMg bei weichem Wasser/LED.</string>
+    <string name="note_ghf">Düngeschema optimiert auf 3:1 Ca:Mg. Wochenangaben sind Richtwerte je nach Sorte.</string>
+    <string name="fehler_volumen">Das Mischvolumen muss größer als 0 sein.</string>
+
+    <!-- Tool: PPFD Rechner -->
+    <string name="menu_ppfd">PPFD Rechner</string>
+    <string name="tile_ppfd_title">PPFD</string>
+    <string name="tile_ppfd_desc">Licht messen</string>
+    <string name="light_source_sun">Sonne / Tageslicht</string>
+    <string name="light_source_led">LED Vollspektrum</string>
+    <string name="light_source_hps">Natriumdampf (HPS)</string>
+    <string name="light_source_fluorescent">Leuchtstofflampe</string>
+    <string name="label_ppfd">PPFD</string>
+    <string name="unit_ppfd">µmol/m²/s</string>
+    <string name="lux_approx_format">≈ %1$s lx</string>
+    <string name="result_placeholder">–</string>
+    <string name="status_live">LIVE</string>
+    <string name="status_held">GEHALTEN</string>
+    <string name="btn_measure">Messen</string>
+    <string name="btn_hold">Wert halten</string>
+    <string name="btn_info">Erklärung</string>
+    <string name="btn_light_source">Lichtquelle wechseln</string>
+    <string name="light_source_dot">Lichtquelle %1$s</string>
+    <string name="measure_hint">Handy flach unter die Lampe legen, Display nach oben · Wischen wechselt die Lichtquelle</string>
+    <string name="measure_no_sensor">Dieses Gerät hat keinen Lichtsensor.</string>
+    <string name="warn_sensor_saturated">Sensor übersteuert – Messung unzuverlässig</string>
+    <string name="label_explanation">So funktioniert die Messung</string>
+    <string name="measure_guide">Handy flach unter die Lampe auf Höhe der Pflanzen legen, Display nach oben. Den Lichtsensor (meist oben neben der Frontkamera) nicht verdecken.</string>
+    <string name="ppfd_explanation_1">Lux beschreibt, wie hell Licht für das menschliche Auge wirkt. PPFD gibt an, wie viele für die Photosynthese nutzbare Photonen (PAR, 400–700 nm) pro Sekunde auf einen Quadratmeter treffen – also das Licht, mit dem Pflanzen tatsächlich arbeiten.</string>
+    <string name="ppfd_explanation_2">Der Umrechnungsfaktor hängt von der Lichtquelle ab: Das Auge gewichtet Grün stark, Rot und Blau dagegen kaum. Jede Lampe hat ein anderes Spektrum, deshalb steckt in gleich vielen Lux unterschiedlich viel PAR.</string>
+    <string name="ppfd_explanation_3">Die Werte sind nur grobe Richtwerte. Handy-Lichtsensoren erfassen rotes und blaues Licht kaum, sind ungenau und sitzen hinter dem Displayglas. Für genaue Werte ein PAR-Messgerät verwenden.</string>
+    <string name="ppfd_formula">PPFD = Lux × Faktor (Sonne 0,018 · LED 0,014 · HPS 0,014 · Leuchtstoff 0,013)</string>
+    <string name="btn_ok">OK</string>
+
+    <!-- Tool: Bewässerung -->
+    <string name="menu_irrigation">Bewässerungsrechner</string>
+    <string name="tile_irrigation_title">Bewässerung</string>
+    <string name="tile_irrigation_desc">Tropfer &amp; Laufzeit</string>
+    <string name="tool_irrigation_title">Bewässerungsrechner</string>
+    <string name="tool_irrigation_desc">Wassermenge pro Topf aus Tropfer-Durchfluss, Anzahl und Laufzeit.</string>
+    <string name="label_dripper_section">Tropfer</string>
+    <string name="label_flow_per_dripper">Durchfluss pro Tropfer</string>
+    <string name="dripper_purple">1,1 L/h</string>
+    <string name="dripper_blue">2,2 L/h</string>
+    <string name="dripper_brown">3,2 L/h</string>
+    <string name="dripper_green">4,0 L/h</string>
+    <string name="dripper_red">8,0 L/h</string>
+    <string name="dripper_purple_desc">1,1 L/h, Rosa/Violett</string>
+    <string name="dripper_blue_desc">2,2 L/h, Blau</string>
+    <string name="dripper_brown_desc">3,2 L/h, Braun</string>
+    <string name="dripper_green_desc">4,0 L/h, Grün</string>
+    <string name="dripper_red_desc">8,0 L/h, Rot</string>
+    <string name="dripper_custom">Eigener Wert</string>
+    <string name="hint_custom_flow">Durchfluss pro Tropfer</string>
+    <string name="unit_lph">L/h</string>
+    <string name="btn_calibrate_flow">Durchfluss auslitern</string>
+    <string name="label_drippers_per_pot">Tropfer pro Topf</string>
+    <string name="btn_drippers_minus">Einen Tropfer weniger</string>
+    <string name="btn_drippers_plus">Einen Tropfer mehr</string>
+    <string name="btn_flow_info">Hinweis zum Durchfluss</string>
+    <string name="flow_info_title">Nennwert und echter Durchfluss</string>
+    <string name="flow_info_text">Der aufgedruckte Durchfluss gilt nur für druckkompensierende Tropfer im richtigen Druckbereich. Druck, Schlauchlänge und Verkalkung verändern die echte Menge.\n\nMit „Durchfluss auslitern“ misst du den echten Wert mit einem Messbecher.\n\nFormel: Menge (ml) = Durchfluss (L/h) × Tropfer × Laufzeit (s) ÷ 3,6</string>
+    <string name="label_waterings_section">Bewässerungen pro Tag</string>
+    <string name="hint_run_time">Laufzeit</string>
+    <string name="unit_seconds_short">Sek</string>
+    <string name="unit_minutes_short">Min</string>
+    <string name="btn_toggle_unit">Einheit wechseln, aktuell %1$s</string>
+    <string name="time_none">Uhrzeit</string>
+    <string name="btn_set_time">Uhrzeit festlegen</string>
+    <string name="btn_remove_watering">Bewässerung entfernen</string>
+    <string name="btn_add_watering">Bewässerung hinzufügen</string>
+    <string name="watering_amount_format">= %1$s</string>
+    <string name="label_pots_tank_section">Töpfe &amp; Tank</string>
+    <string name="hint_pots">Anzahl Töpfe (optional)</string>
+    <string name="hint_tank">Tankvolumen in L (optional)</string>
+    <string name="label_per_pot_day">Pro Topf und Tag</string>
+    <string name="waterings_details_format">%1$d Bewässerungen · %2$d × %3$s L/h</string>
+    <string name="watering_single_details_format">1 Bewässerung · %1$d × %2$s L/h</string>
+    <string name="label_total_day">Alle Töpfe / Tag</string>
+    <string name="label_tank_lasts">Tank reicht</string>
+    <plurals name="tank_days">
+        <item quantity="one">%1$s Tag</item>
+        <item quantity="other">%1$s Tage</item>
+    </plurals>
+    <plurals name="tank_hours">
+        <item quantity="one">%1$d Std.</item>
+        <item quantity="other">%1$d Std.</item>
+    </plurals>
+    <string name="pots_format">bei %1$d Töpfen</string>
+    <string name="pot_single">bei 1 Topf</string>
+    <string name="label_reverse_section">Laufzeit für Zielmenge</string>
+    <string name="hint_target_amount">Zielmenge pro Topf (ml)</string>
+    <string name="reverse_result_format">Laufzeit: %1$s</string>
+    <string name="btn_use_as_watering">Als Bewässerung übernehmen</string>
+    <string name="label_presets_section">Gespeicherte Setups</string>
+    <string name="presets_empty">Noch keine Setups gespeichert.</string>
+    <string name="btn_save_preset">Setup speichern</string>
+    <string name="preset_name_title">Setup speichern</string>
+    <string name="hint_preset_name">Name, z. B. Zelt 1</string>
+    <string name="preset_delete_title">Setup löschen?</string>
+    <string name="preset_delete_message">„%1$s“ wird gelöscht.</string>
+    <string name="preset_loaded">„%1$s“ geladen</string>
+    <string name="btn_save">Speichern</string>
+    <string name="btn_delete">Löschen</string>
+    <string name="btn_cancel">Abbrechen</string>
+    <string name="btn_apply">Übernehmen</string>
+    <string name="calibration_dialog_title">Durchfluss auslitern</string>
+    <string name="calibration_dialog_text">Lass die Tropfer eine feste Zeit in einen Messbecher laufen und trage die gemessene Menge ein.</string>
+    <string name="hint_measured_ml">Gemessene Menge (ml)</string>
+    <string name="hint_measure_seconds">Laufzeit (s)</string>
+    <string name="hint_measure_drippers">Tropfer im Becher</string>
+    <string name="calibration_result_format">Echter Durchfluss: %1$s L/h pro Tropfer</string>
+    <string name="fehler_positive">Bitte eine Zahl größer als 0 eingeben.</string>
+    <string name="fehler_pots">Bitte eine ganze Zahl von 1 bis 999 eingeben.</string>
+
+    <!-- Einstellungen -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_desc">Passe GrowCalc an dein Gerät an.</string>
+    <string name="settings_section_light_sensor">Lichtsensor</string>
+    <string name="hint_calibration">Kalibrierfaktor</string>
+    <string name="calibration_helper">Der Messwert des Lichtsensors wird mit diesem Faktor multipliziert. Standard: 1,0</string>
+    <string name="calibration_tip">Tipp: Miss an derselben Stelle mit einem Luxmeter und dem Handy. Faktor = Luxmeter-Wert ÷ Handy-Wert.</string>
+    <string name="fehler_calibration_range">Der Faktor muss zwischen 0,1 und 10 liegen.</string>
+    <string name="btn_reset_calibration">Auf 1,0 zurücksetzen</string>
+
+    <!-- Buttons -->
+    <string name="btn_berechnen">Berechnen</string>
+    <string name="btn_zuruecksetzen">Zurücksetzen</string>
+
+    <!-- Errors -->
+    <string name="fehler_leer">Bitte geben Sie einen Wert ein.</string>
+    <string name="fehler_ungueltig">Bitte geben Sie eine gültige Zahl ein.</string>
+    <string name="fehler_negativ">Die Geschwindigkeit muss größer als 0 sein.</string>
+
+    <!-- Results -->
+    <string name="ergebnis_platzhalter">-- m³/h</string>
+    <string name="ergebnis_format">%.1f m³/h</string>
+    <string name="temp_format">%.1f °C</string>
+    <string name="kpa_format">%.2f kPa</string>
+</resources>

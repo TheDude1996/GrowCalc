@@ -28,11 +28,13 @@ import io.github.thedude1996.growcalc.calculation.DripperPreset
 import io.github.thedude1996.growcalc.calculation.DurationUnit
 import io.github.thedude1996.growcalc.calculation.IrrigationCalculator
 import io.github.thedude1996.growcalc.calculation.IrrigationResult
+import io.github.thedude1996.growcalc.calculation.TankDuration
 import io.github.thedude1996.growcalc.calculation.WateringInput
 import io.github.thedude1996.growcalc.settings.IrrigationPreset
 import io.github.thedude1996.growcalc.settings.SharedPrefsIrrigationStore
 import io.github.thedude1996.growcalc.viewmodel.IrrigationUiState
 import io.github.thedude1996.growcalc.viewmodel.IrrigationViewModel
+import java.util.Locale
 
 /** Drip irrigation: amount per pot from dripper flow, dripper count and run times. */
 class IrrigationFragment : Fragment() {
@@ -251,7 +253,7 @@ class IrrigationFragment : Fragment() {
         } else {
             row.layout.showError(false)
             val ml = result.wateringMl[index]
-            val helper = ml?.let { getString(R.string.watering_amount_format, IrrigationCalculator.formatVolume(it)) }
+            val helper = ml?.let { getString(R.string.watering_amount_format, IrrigationCalculator.formatVolume(it, locale)) }
             if (row.layout.helperText?.toString() != helper) row.layout.helperText = helper
         }
     }
@@ -261,8 +263,8 @@ class IrrigationFragment : Fragment() {
         cardResult.visibility = if (perPotDay != null) View.VISIBLE else View.GONE
         if (perPotDay == null) return
 
-        textPerPotDay.text = IrrigationCalculator.formatVolume(perPotDay)
-        val flow = IrrigationCalculator.formatNumber(result.flowLph ?: 0.0)
+        textPerPotDay.text = IrrigationCalculator.formatVolume(perPotDay, locale)
+        val flow = IrrigationCalculator.formatNumber(result.flowLph ?: 0.0, locale)
         val drippers = viewModel.state.value?.input?.drippers ?: 1
         val count = result.wateringMl.count { it != null }
         textResultDetails.text = if (count == 1) {
@@ -271,12 +273,19 @@ class IrrigationFragment : Fragment() {
             getString(R.string.waterings_details_format, count, drippers, flow)
         }
 
-        textTotalDay.text = result.totalDayMl?.let { IrrigationCalculator.formatVolume(it) } ?: getString(R.string.result_placeholder)
+        textTotalDay.text = result.totalDayMl?.let { IrrigationCalculator.formatVolume(it, locale) } ?: getString(R.string.result_placeholder)
         textPots.text = if (result.pots == 1) getString(R.string.pot_single) else getString(R.string.pots_format, result.pots)
 
         val tankDays = result.tankDays
         tileTank.visibility = if (tankDays != null) View.VISIBLE else View.GONE
-        textTankDays.text = tankDays?.let { IrrigationCalculator.formatTankDuration(it) }
+        textTankDays.text = tankDays?.let { formatTankDuration(IrrigationCalculator.tankDuration(it, locale)) }
+    }
+
+    private val locale: Locale get() = resources.configuration.locales[0]
+
+    private fun formatTankDuration(duration: TankDuration): String = when (duration) {
+        is TankDuration.Hours -> resources.getQuantityString(R.plurals.tank_hours, duration.hours.toInt(), duration.hours)
+        is TankDuration.Days -> resources.getQuantityString(R.plurals.tank_days, if (duration.isOne) 1 else 2, duration.text)
     }
 
     private fun renderReverse(result: IrrigationResult) {
@@ -351,7 +360,7 @@ class IrrigationFragment : Fragment() {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = flow != null
             textResult.visibility = if (flow != null) View.VISIBLE else View.INVISIBLE
             if (flow != null) {
-                textResult.text = getString(R.string.calibration_result_format, IrrigationCalculator.formatNumber(flow))
+                textResult.text = getString(R.string.calibration_result_format, IrrigationCalculator.formatNumber(flow, locale))
             }
         }
         listOf(editMl, editSeconds, editDrippers).forEach { it.doAfterTextChanged { update() } }

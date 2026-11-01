@@ -27,8 +27,6 @@ object LuxPpfdConverter {
     /** Below this PPFD one decimal is shown, above it whole numbers. */
     private const val DECIMAL_THRESHOLD = 100.0
 
-    private val GERMAN = Locale.GERMANY
-
     fun luxToPpfd(lux: Double, source: LightSource): Double = lux * source.factor
 
     /** Multiplies a raw sensor reading with the user's calibration factor. */
@@ -41,12 +39,12 @@ object LuxPpfdConverter {
     fun parseCalibration(text: String?): Double? =
         text?.trim()?.replace(",", ".")?.toDoubleOrNull()?.takeIf { isValidCalibration(it) }
 
-    /** Rounds to a whole number with German thousands separators ("30.000"). */
-    fun formatRounded(value: Double): String =
-        NumberFormat.getIntegerInstance(GERMAN).format(value.roundToLong())
+    /** Rounds to a whole number with thousands separators of [locale] ("30.000" in German, "30,000" in English). */
+    fun formatRounded(value: Double, locale: Locale = Locale.GERMANY): String =
+        NumberFormat.getIntegerInstance(locale).format(value.roundToLong())
 
     /** PPFD for display: one decimal for low values ("2,9"), whole numbers above ("1.350"). */
-    fun formatPpfd(ppfd: Double): String =
-        if (ppfd < DECIMAL_THRESHOLD) DecimalFormat("0.0", DecimalFormatSymbols(GERMAN)).format(ppfd)
-        else formatRounded(ppfd)
+    fun formatPpfd(ppfd: Double, locale: Locale = Locale.GERMANY): String =
+        if (ppfd < DECIMAL_THRESHOLD) DecimalFormat("0.0", DecimalFormatSymbols(locale)).format(ppfd)
+        else formatRounded(ppfd, locale)
 }

@@ -22,6 +22,11 @@ enum class DurationUnit(val seconds: Int) {
 }
 
 /** One watering per day, e.g. 08:00 for 2 min. [timeOfDay] is minutes after midnight and only informational. */
+sealed interface TankDuration {
+    data class Hours(val hours: Long) : TankDuration
+    data class Days(val text: String, val isOne: Boolean) : TankDuration
+}
+
 data class WateringInput(
     val durationText: String = "",
     val unit: DurationUnit = DurationUnit.MINUTES,
@@ -73,8 +78,6 @@ object IrrigationCalculator {
     private const val MAX_SECONDS = 24 * 3_600.0
     private const val ML_PER_LITER = 1_000.0
     private const val SECONDS_PER_HOUR_PER_ML = 3.6 // (s/h) / (ml/L)
-
-    private val GERMAN = DecimalFormatSymbols(Locale.GERMANY)
 
     fun mlPerPot(flowLph: Double, drippers: Int, seconds: Double): Double =
         flowLph * drippers * seconds / SECONDS_PER_HOUR_PER_ML
@@ -145,10 +148,10 @@ object IrrigationCalculator {
         return if (value in 1..max) value else null
     }
 
-    /** "220 ml", "7,5 ml", from 1000 ml on in liters: "1,32 L". */
-    fun formatVolume(ml: Double): String = when {
-        ml >= ML_PER_LITER -> DecimalFormat("#,##0.##", GERMAN).format(ml / ML_PER_LITER) + " L"
-        ml < 10 -> DecimalFormat("0.#", GERMAN).format(ml) + " ml"
+    /** "220 ml", "7,5 ml", from 1000 ml on in liters: "1,32 L" (separators follow [locale]). */
+    fun formatVolume(ml: Double, locale: Locale = Locale.GERMANY): String = when {
+        ml >= ML_PER_LITER -> DecimalFormat("#,##0.##", symbols(locale)).format(ml / ML_PER_LITER) + " L"
+        ml < 10 -> DecimalFormat("0.#", symbols(locale)).format(ml) + " ml"
         else -> "${ml.roundToLong()} ml"
     }
 
@@ -165,15 +168,21 @@ object IrrigationCalculator {
         }
     }
 
-    /** "4,5 Tage", "1 Tag", below one day in hours: "18 Std.". */
-    fun formatTankDuration(days: Double): String {
-        if (days < 1) return "${(days * 24).roundToLong().coerceAtLeast(1)} Std."
-        val text = DecimalFormat("#,##0.#", GERMAN).format(days)
-        return if (text == "1") "1 Tag" else "$text Tage"
+    /**
+     * How long a tank lasts, split for localized display: below one day in whole hours,
+     * otherwise days with one decimal ("4,5"; [TankDuration.Days.isOne] for exactly "1").
+     */
+    fun tankDuration(days: Double, locale: Locale = Locale.GERMANY): TankDuration {
+        if (days < 1) return TankDuration.Hours((days * 24).roundToLong().coerceAtLeast(1))
+        val text = DecimalFormat("#,##0.#", symbols(locale)).format(days)
+        return TankDuration.Days(text, isOne = text == "1")
     }
 
-    /** Flow for display and text fields: "2,2", "2,45". */
-    fun formatNumber(value: Double): String = DecimalFormat("0.##", GERMAN).format(value)
+    /** Flow for display and text fields: "2,2", "2,45" (decimal separator follows [locale]). */
+    fun formatNumber(value: Double, locale: Locale = Locale.GERMANY): String =
+        DecimalFormat("0.##", symbols(locale)).format(value)
+
+    private fun symbols(locale: Locale) = DecimalFormatSymbols(locale)
 
     fun formatTime(minutesOfDay: Int): String = "%02d:%02d".format(Locale.GERMANY, minutesOfDay / 60, minutesOfDay % 60)
 }

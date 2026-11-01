@@ -22,6 +22,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import io.github.thedude1996.growcalc.calculation.IrrigationCalculator
+import io.github.thedude1996.growcalc.calculation.TankDuration
 import io.github.thedude1996.growcalc.settings.AppSettings
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -48,6 +50,10 @@ class IrrigationFragmentTest {
 
     @After
     fun tearDown() = scenario.close()
+
+    // Expected texts come from resources so the test passes in every app language.
+    private val res get() = InstrumentationRegistry.getInstrumentation().targetContext.resources
+    private val locale get() = res.configuration.locales[0]
 
     /** The run-time field of the [index]-th watering row. */
     private fun durationField(index: Int): Matcher<View> = allOf(
@@ -86,14 +92,16 @@ class IrrigationFragmentTest {
         // 110 ml + 55 ml per pot, 660 ml for 4 pots, 10 L tank
         onView(withId(R.id.textPerPotDay)).perform(scrollTo()).check(matches(withText("165 ml")))
         onView(withId(R.id.textTotalDay)).check(matches(withText("660 ml")))
-        onView(withId(R.id.textTankDays)).check(matches(withText("15,2 Tage")))
+        onView(withId(R.id.textTankDays)).check(matches(withText(
+            res.getQuantityString(R.plurals.tank_days, 2, (IrrigationCalculator.tankDuration(10_000.0 / 660, locale) as TankDuration.Days).text)
+        )))
     }
 
     @Test
     fun reverseModeAddsTheRunTime() {
         onView(withId(R.id.btnDrippersPlus)).perform(click())
         onView(withId(R.id.editTarget)).perform(scrollTo(), replaceText("220"), closeSoftKeyboard())
-        onView(withId(R.id.textReverseResult)).check(matches(withText("Laufzeit: 3:00 min")))
+        onView(withId(R.id.textReverseResult)).check(matches(withText(res.getString(R.string.reverse_result_format, "3:00 min"))))
         onView(withId(R.id.btnUseAsWatering)).perform(scrollTo(), click())
         onView(durationField(0)).check(matches(withText("180")))
         onView(withId(R.id.textPerPotDay)).perform(scrollTo()).check(matches(withText("220 ml")))
@@ -103,10 +111,10 @@ class IrrigationFragmentTest {
     fun calibrationSetsCustomFlow() {
         onView(withId(R.id.btnCalibrateFlow)).perform(click())
         onView(withId(R.id.editMeasuredMl)).inRoot(isDialog()).perform(replaceText("40"))
-        onView(withText("Echter Durchfluss: 2,4 L/h pro Tropfer")).inRoot(isDialog()).check(matches(isDisplayed()))
+        onView(withText(res.getString(R.string.calibration_result_format, IrrigationCalculator.formatNumber(2.4, locale)))).inRoot(isDialog()).check(matches(isDisplayed()))
         onView(withText(R.string.btn_apply)).inRoot(isDialog()).perform(click())
 
-        onView(withId(R.id.editCustomFlow)).check(matches(withText("2,4")))
+        onView(withId(R.id.editCustomFlow)).check(matches(withText(IrrigationCalculator.formatNumber(2.4, locale))))
         onView(durationField(0)).perform(replaceText("1"), closeSoftKeyboard())
         onView(withId(R.id.textPerPotDay)).perform(scrollTo()).check(matches(withText("40 ml")))
     }

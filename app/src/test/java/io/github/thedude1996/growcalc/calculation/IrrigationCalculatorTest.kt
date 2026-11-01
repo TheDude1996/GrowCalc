@@ -5,6 +5,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.util.Locale
 
 class IrrigationCalculatorTest {
 
@@ -135,9 +136,28 @@ class IrrigationCalculatorTest {
         assertEquals("1:30 min", IrrigationCalculator.formatDuration(90.0))
         assertEquals("3:00 min", IrrigationCalculator.formatDuration(179.6))
         assertEquals("1:02:05 h", IrrigationCalculator.formatDuration(3_725.0))
-        assertEquals("13,6 Tage", IrrigationCalculator.formatTankDuration(13.636))
-        assertEquals("1 Tag", IrrigationCalculator.formatTankDuration(1.02))
-        assertEquals("18 Std.", IrrigationCalculator.formatTankDuration(0.75))
+        assertEquals(TankDuration.Days("13,6", isOne = false), IrrigationCalculator.tankDuration(13.636))
+        assertEquals(TankDuration.Days("1", isOne = true), IrrigationCalculator.tankDuration(1.02))
+        assertEquals(TankDuration.Hours(18), IrrigationCalculator.tankDuration(0.75))
+        assertEquals(TankDuration.Hours(1), IrrigationCalculator.tankDuration(0.001))
         assertEquals("08:05", IrrigationCalculator.formatTime(8 * 60 + 5))
+    }
+
+    @Test
+    fun `english locale uses dot decimals and comma grouping`() {
+        assertEquals("7.5 ml", IrrigationCalculator.formatVolume(7.5, Locale.US))
+        assertEquals("1.47 L", IrrigationCalculator.formatVolume(1_466.666, Locale.US))
+        assertEquals("1,200 L", IrrigationCalculator.formatVolume(1_200_000.0, Locale.US))
+        assertEquals("2.45", IrrigationCalculator.formatNumber(2.45, Locale.US))
+        assertEquals("2,45", IrrigationCalculator.formatNumber(2.45))
+        assertEquals(TankDuration.Days("13.6", isOne = false), IrrigationCalculator.tankDuration(13.636, Locale.US))
+    }
+
+    @Test
+    fun `formatted numbers parse back in both languages`() {
+        for (locale in listOf(Locale.GERMANY, Locale.US)) {
+            val text = IrrigationCalculator.formatNumber(2.45, locale)
+            assertEquals(2.45, IrrigationCalculator.parsePositive(text)!!, 1e-9)
+        }
     }
 }

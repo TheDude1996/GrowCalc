@@ -32,7 +32,7 @@
             android:icon="@drawable/ic_tool_water"
             android:title="@string/menu_irrigation" />
     </group>
-    <item android:title="Allgemein">
+    <item android:title="@string/menu_section_general">
         <menu>
             <item
                 android:id="@+id/nav_info"

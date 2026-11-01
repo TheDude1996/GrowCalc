@@ -2,6 +2,16 @@
 
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/).
 
+## [Unveröffentlicht]
+
+### Hinzugefügt
+- Englische Oberfläche: Die App erscheint auf Englisch, wenn die Gerätesprache nicht Deutsch ist; auf deutschen Geräten bleibt alles auf Deutsch
+- Sprache pro App wählbar (Android 13+: Einstellungen → Apps → GrowCalc → Sprache)
+
+### Geändert
+- Zahlen (Dezimal- und Tausendertrennzeichen) richten sich nach der Sprache, z. B. „1.47 L“ bzw. „1,47 L“
+- Dünger-Wochen, Herstellerhinweise und „Bittersalz“ sind jetzt übersetzbar
+
 ## [0.4.0-beta] – 2026-11-01
 
 ### Hinzugefügt

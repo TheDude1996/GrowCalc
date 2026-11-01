@@ -17,6 +17,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.espresso.matcher.ViewMatchers.Visibility
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import io.github.thedude1996.growcalc.calculation.LuxPpfdConverter
 import io.github.thedude1996.growcalc.fragments.AndroidTestFakeLightSensor
 import io.github.thedude1996.growcalc.fragments.PpfdFragment
 import io.github.thedude1996.growcalc.sensor.AndroidLightSensorSource
@@ -51,6 +52,10 @@ class PpfdFragmentTest {
         PpfdFragment.sensorSourceFactory = { AndroidLightSensorSource(it) }
     }
 
+    // Expected texts come from resources so the test passes in every app language.
+    private val res get() = InstrumentationRegistry.getInstrumentation().targetContext.resources
+    private val locale get() = res.configuration.locales[0]
+
     private fun emit(lux: Float, timeMs: Long) =
         InstrumentationRegistry.getInstrumentation().runOnMainSync { fakeSensor.emit(lux, timeMs) }
 
@@ -58,18 +63,18 @@ class PpfdFragmentTest {
     fun measuresLiveOnOpen() {
         assertTrue(fakeSensor.isRunning)
         onView(withId(R.id.textPpfd)).check(matches(withText("–")))
-        onView(withId(R.id.textStatus)).check(matches(withText("LIVE")))
+        onView(withId(R.id.textStatus)).check(matches(withText(R.string.status_live)))
 
         emit(30_000f, 0)
         onView(withId(R.id.textPpfd)).check(matches(withText("540")))
-        onView(withId(R.id.textLux)).check(matches(withText("≈ 30.000 lx")))
-        onView(withId(R.id.textLightSource)).check(matches(withText("Sonne / Tageslicht")))
+        onView(withId(R.id.textLux)).check(matches(withText(res.getString(R.string.lux_approx_format, LuxPpfdConverter.formatRounded(30_000.0, locale)))))
+        onView(withId(R.id.textLightSource)).check(matches(withText(R.string.light_source_sun)))
     }
 
     @Test
     fun lowLightShowsOneDecimal() {
         emit(161f, 0)
-        onView(withId(R.id.textPpfd)).check(matches(withText("2,9")))
+        onView(withId(R.id.textPpfd)).check(matches(withText(LuxPpfdConverter.formatPpfd(2.9, locale))))
     }
 
     @Test
@@ -78,17 +83,17 @@ class PpfdFragmentTest {
         onView(withId(R.id.textPpfd)).check(matches(withText("180")))
 
         onView(withId(R.id.btnLightSource)).perform(click())
-        onView(withId(R.id.textLightSource)).check(matches(withText("LED Vollspektrum")))
+        onView(withId(R.id.textLightSource)).check(matches(withText(R.string.light_source_led)))
         onView(withId(R.id.textPpfd)).check(matches(withText("140")))
 
         onView(withId(R.id.meterPanel)).perform(swipeLeft())
-        onView(withId(R.id.textLightSource)).check(matches(withText("Natriumdampf (HPS)")))
+        onView(withId(R.id.textLightSource)).check(matches(withText(R.string.light_source_hps)))
 
         onView(withId(R.id.meterPanel)).perform(swipeRight())
         onView(withId(R.id.meterPanel)).perform(swipeRight())
-        onView(withId(R.id.textLightSource)).check(matches(withText("Sonne / Tageslicht")))
+        onView(withId(R.id.textLightSource)).check(matches(withText(R.string.light_source_sun)))
 
-        onView(withContentDescription("Lichtquelle Leuchtstofflampe")).perform(click())
+        onView(withContentDescription(res.getString(R.string.light_source_dot, res.getString(R.string.light_source_fluorescent)))).perform(click())
         onView(withId(R.id.textPpfd)).check(matches(withText("130")))
     }
 
@@ -100,12 +105,12 @@ class PpfdFragmentTest {
 
         onView(withId(R.id.btnMain)).perform(click())
         assertFalse(fakeSensor.isRunning)
-        onView(withId(R.id.textStatus)).check(matches(withText("GEHALTEN")))
+        onView(withId(R.id.textStatus)).check(matches(withText(R.string.status_held)))
         onView(withId(R.id.textPpfd)).check(matches(withText("450")))
 
         onView(withId(R.id.btnMain)).perform(click())
         assertTrue(fakeSensor.isRunning)
-        onView(withId(R.id.textStatus)).check(matches(withText("LIVE")))
+        onView(withId(R.id.textStatus)).check(matches(withText(R.string.status_live)))
     }
 
     @Test
@@ -118,7 +123,7 @@ class PpfdFragmentTest {
     @Test
     fun infoShowsExplanation() {
         onView(withId(R.id.btnInfo)).perform(click())
-        onView(withText("So funktioniert die Messung")).inRoot(isDialog()).check(matches(isDisplayed()))
+        onView(withText(R.string.label_explanation)).inRoot(isDialog()).check(matches(isDisplayed()))
     }
 
     @Test

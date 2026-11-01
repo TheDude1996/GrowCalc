@@ -158,7 +158,8 @@ class NutrientFragment : Fragment() {
             val inflater = LayoutInflater.from(requireContext())
             result.components.forEach { comp ->
                 val row = inflater.inflate(R.layout.item_component, layoutComponents, false)
-                row.findViewById<TextView>(R.id.componentName).text = comp.name
+                row.findViewById<TextView>(R.id.componentName).text =
+                    if (comp.kind == ComponentKind.ADDITIVE) getString(R.string.component_epsom_salt) else comp.name
                 row.findViewById<TextView>(R.id.componentAmount).text =
                     getString(R.string.amount_format, comp.amountTotal, comp.unit)
                 val dotColor = if (comp.kind == ComponentKind.PRODUCT) R.color.primary_green else R.color.tertiary_earth
@@ -205,7 +206,7 @@ class NutrientFragment : Fragment() {
                 textWaterNote.text = getString(R.string.note_ghf_calc_info, result.mode.label)
             }
 
-            textNotes.text = viewModel.selectedProgram.value?.notes
+            textNotes.text = viewModel.selectedProgram.value?.note?.let { getString(it.textRes()) }.orEmpty()
         }
     }
 
@@ -231,7 +232,7 @@ class NutrientFragment : Fragment() {
             viewModel.selectedWeekIndex.value = value.toInt()
             val weeks = viewModel.selectedProgram.value?.weeks ?: return@addOnChangeListener
             if (value.toInt() in weeks.indices) {
-                textSelectedWeek.text = getString(R.string.phase_format, weeks[value.toInt()].label)
+                textSelectedWeek.text = getString(R.string.phase_format, weeks[value.toInt()].displayLabel())
             }
             viewModel.calculate()
         }
@@ -304,7 +305,7 @@ class NutrientFragment : Fragment() {
         sliderWeek.valueTo = (program.weeks.size - 1).toFloat()
         sliderWeek.value = index.toFloat()
         viewModel.selectedWeekIndex.value = index
-        textSelectedWeek.text = getString(R.string.phase_format, program.weeks[index].label)
+        textSelectedWeek.text = getString(R.string.phase_format, program.weeks[index].displayLabel())
         viewModel.calculate()
     }
 
@@ -330,4 +331,13 @@ class NutrientFragment : Fragment() {
 
     private fun TextInputEditText.parseDouble(): Double? =
         text?.toString()?.trim()?.replace(",", ".")?.toDoubleOrNull()
+
+    private fun FeedWeek.displayLabel(): String =
+        if (numberedWeek) getString(R.string.week_label_format, label) else label
+
+    private fun ProgramNote.textRes(): Int = when (this) {
+        ProgramNote.ATHENA_PRO -> R.string.note_athena_pro
+        ProgramNote.ATHENA_BLENDED -> R.string.note_athena_blended
+        ProgramNote.GHF -> R.string.note_ghf
+    }
 }

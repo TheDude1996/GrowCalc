@@ -5,6 +5,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.util.Locale
 import kotlin.math.roundToLong
 
 class LuxPpfdConverterTest {
@@ -72,5 +73,12 @@ class LuxPpfdConverterTest {
         assertEquals("99,9", LuxPpfdConverter.formatPpfd(99.94))
         assertEquals("540", LuxPpfdConverter.formatPpfd(540.4))
         assertEquals("1.350", LuxPpfdConverter.formatPpfd(1_350.0))
+    }
+
+    @Test
+    fun `english locale formats lux and ppfd with english separators`() {
+        assertEquals("30,000", LuxPpfdConverter.formatRounded(30_000.0, Locale.US))
+        assertEquals("2.9", LuxPpfdConverter.formatPpfd(2.88, Locale.US))
+        assertEquals("1,350", LuxPpfdConverter.formatPpfd(1_350.0, Locale.US))
     }
 }

@@ -14,7 +14,6 @@ import io.github.thedude1996.growcalc.calculation.LuxPpfdConverter
 import io.github.thedude1996.growcalc.settings.AppSettings
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.util.Locale
 
 class SettingsFragment : Fragment() {
 
@@ -55,5 +54,5 @@ class SettingsFragment : Fragment() {
     }
 
     private fun formatFactor(value: Double): String =
-        DecimalFormat("0.0##", DecimalFormatSymbols(Locale.GERMANY)).format(value)
+        DecimalFormat("0.0##", DecimalFormatSymbols(resources.configuration.locales[0])).format(value)
 }

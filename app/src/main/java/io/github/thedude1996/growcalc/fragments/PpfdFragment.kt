@@ -33,6 +33,7 @@ import io.github.thedude1996.growcalc.ui.StatusTone
 import io.github.thedude1996.growcalc.ui.showStatus
 import io.github.thedude1996.growcalc.viewmodel.PpfdUiState
 import io.github.thedude1996.growcalc.viewmodel.PpfdViewModel
+import java.util.Locale
 import kotlin.math.abs
 
 /** Full-screen light meter: live PPFD from the phone's light sensor. */
@@ -96,6 +97,8 @@ class PpfdFragment : Fragment() {
         })
     }
 
+    private val locale: Locale get() = resources.configuration.locales[0]
+
     private fun render(state: PpfdUiState) {
         textLightSource.setText(state.lightSource.labelRes())
         dots.forEachIndexed { index, dot ->
@@ -107,9 +110,9 @@ class PpfdFragment : Fragment() {
         }
 
         val ppfd = state.ppfd
-        textPpfd.text = ppfd?.let { LuxPpfdConverter.formatPpfd(it) } ?: getString(R.string.result_placeholder)
+        textPpfd.text = ppfd?.let { LuxPpfdConverter.formatPpfd(it, locale) } ?: getString(R.string.result_placeholder)
         val lux = state.lux
-        textLux.text = lux?.let { getString(R.string.lux_approx_format, LuxPpfdConverter.formatRounded(it)) }
+        textLux.text = lux?.let { getString(R.string.lux_approx_format, LuxPpfdConverter.formatRounded(it, locale)) }
         textLux.visibility = if (lux != null) View.VISIBLE else View.INVISIBLE
 
         val statusVisible = state.sensorAvailable

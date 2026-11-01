@@ -13,13 +13,21 @@ data class NutrientLine(
 data class FeedProgram(
     val name: String,
     val weeks: List<FeedWeek>,
-    val notes: String = ""
+    val note: ProgramNote? = null
 )
 
+/** Manufacturer hint shown below the result; the UI maps it to a localized string resource. */
+enum class ProgramNote { ATHENA_PRO, ATHENA_BLENDED, GHF }
+
+/**
+ * One row of a feed chart. If [numberedWeek] is true, [label] holds only the week part (e.g. "2-3 (V)")
+ * and the UI prefixes the localized word for "week".
+ */
 data class FeedWeek(
     val label: String,
     val targetEc: Double,
-    val components: List<NutrientComponent>
+    val components: List<NutrientComponent>,
+    val numberedWeek: Boolean = false
 )
 
 data class NutrientComponent(
@@ -93,7 +101,7 @@ object NutrientDataProvider {
                 NutrientLine("Pro Line", listOf(
                     FeedProgram(
                         name = "Metric Chart",
-                        notes = "Werte sind Gramm pro 10 Liter laut Hersteller, hier auf 1 Liter umgerechnet.",
+                        note = ProgramNote.ATHENA_PRO,
                         weeks = listOf(
                             FeedWeek("Veg Early", 2.0, listOf(comp("Core", 1.2, "g"), comp("Grow", 1.9, "g", "Athena_Grow"))),
                             FeedWeek("Veg Late", 2.5, listOf(comp("Core", 1.6, "g"), comp("Grow", 2.6, "g", "Athena_Grow"))),
@@ -107,7 +115,7 @@ object NutrientDataProvider {
                 NutrientLine("Blended Line", listOf(
                     FeedProgram(
                         name = "Standard Program (Soil/Coco/Hydro)",
-                        notes = "Dosierung in ml pro Liter. Nutze CaMg bei weichem Wasser/LED.",
+                        note = ProgramNote.ATHENA_BLENDED,
                         weeks = listOf(
                             FeedWeek("Veg Early", 1.2, listOf(
                                 comp("Grow A", 0.8, "ml", "AB_Grow_A"),
@@ -176,21 +184,21 @@ object NutrientDataProvider {
         val weeks = mutableListOf<FeedWeek>()
         
         // Seedling / Early Veg
-        weeks.add(FeedWeek("Woche 1 (V)", if (isSoil) 0.5 else 0.8, listOf(comp("Grow", 0.25, "g"), comp("Calcium", if (isSoil) 0.1 else 0.2, "g"))))
+        weeks.add(FeedWeek("1 (V)", if (isSoil) 0.5 else 0.8, listOf(comp("Grow", 0.25, "g"), comp("Calcium", if (isSoil) 0.1 else 0.2, "g")), numberedWeek = true))
         
         // Mid Veg
-        weeks.add(FeedWeek("Woche 2-3 (V)", if (isSoil) 1.0 else 1.4, listOf(comp("Grow", 0.5, "g"), comp("Calcium", if (isSoil) 0.2 else 0.4, "g"))))
+        weeks.add(FeedWeek("2-3 (V)", if (isSoil) 1.0 else 1.4, listOf(comp("Grow", 0.5, "g"), comp("Calcium", if (isSoil) 0.2 else 0.4, "g")), numberedWeek = true))
         
         // Late Veg
-        weeks.add(FeedWeek("Woche 4+ (V)", if (isSoil) 1.2 else 1.6, listOf(comp("Grow", 0.7, "g"), comp("Calcium", if (isSoil) 0.3 else 0.5, "g"))))
+        weeks.add(FeedWeek("4+ (V)", if (isSoil) 1.2 else 1.6, listOf(comp("Grow", 0.7, "g"), comp("Calcium", if (isSoil) 0.3 else 0.5, "g")), numberedWeek = true))
         
         // Bloom Phases
         for (i in 1..bloomWeeks) {
-            val label = "Woche $i (B)"
+            val label = "$i (B)"
             val isFlush = i == bloomWeeks
 
             if (isFlush) {
-                weeks.add(FeedWeek("Woche $i (Flush)", 0.0, listOf()))
+                weeks.add(FeedWeek("$i (Flush)", 0.0, listOf(), numberedWeek = true))
                 continue
             }
 
@@ -219,12 +227,12 @@ object NutrientDataProvider {
                 if (i <= 2) 1.6 else if (i > bloomWeeks - 3) 2.2 else 2.0
             }
 
-            weeks.add(FeedWeek(label, targetEc, components))
+            weeks.add(FeedWeek(label, targetEc, components, numberedWeek = true))
         }
 
         return FeedProgram(
             name = name,
-            notes = "Düngeschema optimiert auf 3:1 Ca:Mg. Wochenangaben sind Richtwerte je nach Sorte.",
+            note = ProgramNote.GHF,
             weeks = weeks
         )
     }
