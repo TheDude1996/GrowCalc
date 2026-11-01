@@ -1,0 +1,158 @@
+<resources>
+    <string name="app_name">Grow Calculator</string>
+    <string name="titel_app">Grow Calculator</string>
+    <string name="nav_header_title">Grow Calculator</string>
+    <string name="nav_header_subtitle">Professional Toolset</string>
+
+    <!-- Navigation -->
+    <string name="menu_home">Dashboard</string>
+    <string name="menu_volumenstrom">Volumenstromrechner</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_formel">Formel</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_drawer_open">Menü öffnen</string>
+    <string name="menu_drawer_close">Menü schließen</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_welcome">Willkommen</string>
+    <string name="dashboard_subtitle">Wählen Sie ein Tool für Ihr Projekt</string>
+    <string name="dashboard_hero_overline">Grow Calculator</string>
+    <string name="dashboard_hero_title">Alles für dein Klima, Licht &amp; Dünger</string>
+    <string name="dashboard_hero_subtitle">Präzise Rechner für Zelt, Gewächshaus und Indoor-Garten.</string>
+    <string name="dashboard_section_tools">Werkzeuge</string>
+    <string name="tile_vol_title">Volumenstrom</string>
+    <string name="tile_vol_desc">Luftleistung in m³/h</string>
+    <string name="tile_vpd_title">VPD</string>
+    <string name="tile_vpd_desc">Dampfdruckdefizit</string>
+    <string name="tile_dli_title">DLI</string>
+    <string name="tile_dli_desc">Tageslichtintegral</string>
+    <string name="tile_nutrient_title">Dünger</string>
+    <string name="tile_nutrient_desc">Dosierung nach Schema</string>
+    <string name="dashboard_tip_title">Tipp</string>
+    <string name="dashboard_tip_text">Kommazahlen kannst du mit Punkt oder Komma eingeben – beides funktioniert.</string>
+
+    <!-- Common section labels -->
+    <string name="label_ergebnis_section">Ergebnis</string>
+    <string name="label_schema_section">Düngerschema</string>
+    <string name="label_water_section">Wasser &amp; Ansatz</string>
+    <string name="label_analysis_section">Nährstoff-Analyse (mg/L)</string>
+    <string name="label_ca_mg_short">Ca / Mg</string>
+    <string name="label_ratio_short">Ca:Mg</string>
+    <string name="label_n_short">N</string>
+    <string name="label_p_short">P₂O₅</string>
+    <string name="label_k_short">K₂O</string>
+    <string name="label_ca_short">Ca</string>
+    <string name="label_mg_short">Mg</string>
+    <string name="amount_format">%1$.2f %2$s</string>
+    <string name="hint_temp_air_short">Lufttemperatur</string>
+    <string name="hint_humidity_short">Luftfeuchte</string>
+
+    <!-- Tool: Volumenstrom -->
+    <string name="tool_vol_title">Volumenstromrechner Luft</string>
+    <string name="tool_vol_desc">Berechnet den Luftaustausch in m³/h basierend auf Rohrdurchmesser und Geschwindigkeit.</string>
+    <string name="label_eingabe">Eingabe</string>
+    <string name="hint_durchmesser">Rohrdurchmesser wählen</string>
+    <string name="hint_geschwindigkeit">Kanalgeschwindigkeit (m/s)</string>
+    <string name="label_ergebnis">Berechneter Volumenstrom</string>
+
+    <!-- Tool: VPD Rechner -->
+    <string name="menu_vpd">VPD Rechner</string>
+    <string name="tool_vpd_title">VPD Rechner</string>
+    <string name="tool_vpd_desc">Vapor Pressure Deficit basierend auf Blatt- und Lufttemperatur berechnen.</string>
+    <string name="hint_temp_air">Lufttemperatur (°C)</string>
+    <string name="hint_humidity">Rel. Luftfeuchtigkeit (%)</string>
+    <string name="hint_leaf_offset">Blatt-Offset (°C, z.B. -2)</string>
+    <string name="label_vpd_air">Air VPD</string>
+    <string name="label_vpd_leaf">Leaf VPD</string>
+    <string name="label_temp_leaf">Blatttemperatur</string>
+    <string name="status_low">Niedrig (Gefahr: Schimmel)</string>
+    <string name="status_ideal">Ideal (Optimale Transpiration)</string>
+    <string name="status_high">Hoch (Stress für Pflanze)</string>
+    <string name="status_danger">Sehr Hoch (Gefahr: Welken)</string>
+    <string name="fehler_humidity">Feuchtigkeit muss zwischen 0 und 100 liegen.</string>
+    <string name="fehler_temp_range">Temperatur muss zwischen -50 und 60 °C liegen.</string>
+
+    <!-- Tool: DLI Rechner -->
+    <string name="menu_dli">DLI Rechner</string>
+    <string name="tool_dli_title">PPFD-zu-DLI Rechner</string>
+    <string name="tool_dli_desc">Berechnet das Daily Light Integral (DLI) aus PPFD und Beleuchtungsdauer.</string>
+    <string name="hint_ppfd">PPFD (µmol/m²/s)</string>
+    <string name="hint_hours">Beleuchtungsdauer (h/Tag)</string>
+    <string name="label_dli">Daily Light Integral (DLI)</string>
+    <string name="res_dli_format">%.2f mol/m²/Tag</string>
+    <string name="label_presets">Schnellwahl Stunden:</string>
+    <string name="fehler_ppfd_negativ">PPFD darf nicht negativ sein.</string>
+    <string name="fehler_hours_range">Stunden müssen zwischen 0 und 24 liegen.</string>
+    <string name="dli_low">Niedrig (Schattenpflanzen / Bewurzelung)</string>
+    <string name="dli_medium">Mittel (Wachstumsphase / Veg)</string>
+    <string name="dli_high">Hoch (Blütephase / Fruchtbildung)</string>
+    <string name="dli_very_high">Sehr Hoch (Max. Ertrag / CO2-Einsatz sinnvoll)</string>
+
+    <!-- Tool: Nutrient Calculator -->
+    <string name="menu_nutrient">Nährstoff-Rechner</string>
+    <string name="tool_nutrient_title">Dosierrechner</string>
+    <string name="tool_nutrient_desc">Berechnet die Nährstoffmengen nach Herstellerschema.</string>
+    <string name="hint_manufacturer">Hersteller wählen</string>
+    <string name="hint_line">Linie wählen</string>
+    <string name="hint_program">Programm wählen</string>
+    <string name="hint_baseline_ec">Ausgangs-EC Wasser</string>
+    <string name="hint_volume">Mischvolumen (Liter)</string>
+    <string name="label_target_ec">Ziel-EC laut Schema:</string>
+    <string name="label_total_ec">Gesamt-EC (geschätzt):</string>
+    <string name="label_water_base">Wasserbasis (mg/L):</string>
+    <string name="label_final_solution">Endlösung gesamt (mg/L):</string>
+    <string name="label_ca_mg_ratio">Ca:Mg Verhältnis:</string>
+    <string name="ratio_balanced">ausgewogen</string>
+    <string name="ratio_ca_heavy">calciumlastig</string>
+    <string name="ratio_mg_heavy">magnesiumlastig</string>
+    <string name="hint_water_ca">Calcium (mg/L)</string>
+    <string name="hint_water_mg">Magnesium (mg/L)</string>
+    <string name="label_water_analysis_input">Wasseranalyse Eingabe (optional):</string>
+    <string name="label_components">Benötigte Komponenten:</string>
+    <string name="label_notes">Herstellerhinweise:</string>
+    <string name="label_week_slider">Woche / Phase wählen:</string>
+    <string name="label_ratio_slider">Zielverhältnis Ca : Mg:</string>
+    <string name="label_water_analysis">Wasser-Analyse &amp; Ca:Mg-Bilanz:</string>
+    <string name="label_water_ca">Wasser Calcium:</string>
+    <string name="label_water_mg">Wasser Magnesium:</string>
+    <string name="label_fertilizer_mg">Dünger Mg (Schema):</string>
+    <string name="label_epsom_dosage">Zusatz Mg (Bittersalz):</string>
+    <string name="label_total_mg_post">Gesamt Magnesium:</string>
+    <string name="label_target_ca">Ziel-Calcium:</string>
+    <string name="label_extra_ca_needed">Zusatz-Ca benötigt:</string>
+    <string name="label_final_ca_dosage">Empf. Calcium-Dosis:</string>
+    <string name="note_ca_sufficient">Genug Calcium im Wasser vorhanden. Kein Zusatz nötig.</string>
+    <string name="note_ca_heavy">Wasser ist bereits calciumlastig (> 4:1). Calcium-Zusatz vermeiden.</string>
+    <string name="note_ghf_calc_info">Diese Berechnung optimiert das Ca:Mg Verhältnis auf %1$s unter Berücksichtigung aller Komponenten.</string>
+    <string name="week_placeholder">Woche: --</string>
+    <string name="ratio_placeholder">3.0 : 1</string>
+    <string name="phase_format">Phase: %1$s</string>
+    <string name="ratio_target_format">Zielverhältnis: %1$s</string>
+    <string name="ratio_manufacturer">Hersteller-Feedchart</string>
+    <string name="manufacturer_mode_default">Hersteller-Modus (original)</string>
+    <string name="manufacturer_mode_format">Hersteller-Modus (%1$s)</string>
+    <string name="ec_format">EC: %.1f</string>
+    <string name="component_format">%1$s: %2$.2f %3$s</string>
+    <string name="ca_mg_pair_format">%1$.1f / %2$.1f</string>
+    <string name="ratio_format">%.1f : 1</string>
+    <string name="value_format">%.1f</string>
+    <string name="mg_per_liter_format">%.1f mg/L</string>
+    <string name="g_per_liter_format">%.3f g/L</string>
+    <string name="target_ca_format">Ziel: %.1f mg/L</string>
+    <string name="fehler_volumen">Das Mischvolumen muss größer als 0 sein.</string>
+
+    <!-- Buttons -->
+    <string name="btn_berechnen">Berechnen</string>
+    <string name="btn_zuruecksetzen">Zurücksetzen</string>
+
+    <!-- Errors -->
+    <string name="fehler_leer">Bitte geben Sie einen Wert ein.</string>
+    <string name="fehler_ungueltig">Bitte geben Sie eine gültige Zahl ein.</string>
+    <string name="fehler_negativ">Die Geschwindigkeit muss größer als 0 sein.</string>
+
+    <!-- Results -->
+    <string name="ergebnis_platzhalter">-- m³/h</string>
+    <string name="ergebnis_format">%.1f m³/h</string>
+    <string name="temp_format">%.1f °C</string>
+    <string name="kpa_format">%.2f kPa</string>
+</resources>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="32dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <ImageView
+                style="@style/Grow.IconBadge"
+                android:backgroundTint="@color/accent_vpd_bg"
+                android:src="@drawable/ic_tool_vpd"
+                app:tint="@color/accent_vpd" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/tool_vpd_title"
+                    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tool_vpd_desc"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Input -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Grow.Card.Section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/label_eingabe"
+                    android:textAppearance="@style/TextAppearance.Grow.Overline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutTempAir"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:hint="@string/hint_temp_air_short"
+                        app:suffixText="°C">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTempAir"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="0123456789.,-"
+                            android:imeOptions="actionNext"
+                            android:inputType="numberDecimal|numberSigned" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutHumidity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:hint="@string/hint_humidity_short"
+                        app:suffixText="%">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editHumidity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="0123456789.,"
+                            android:imeOptions="actionNext"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutLeafOffset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/hint_leaf_offset">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editLeafOffset"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789.,-"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal|numberSigned" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Actions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnZuruecksetzen"
+                style="@style/Widget.Grow.Button.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/btn_zuruecksetzen"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                app:icon="@drawable/ic_refresh"
+                app:iconPadding="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBerechnen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:text="@string/btn_berechnen"
+                app:icon="@drawable/ic_arrow_forward"
+                app:iconGravity="textEnd" />
+        </LinearLayout>
+
+        <!-- Result -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardErgebnis"
+            style="@style/Widget.Grow.Card.Result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.8"
+                    android:text="@string/label_vpd_leaf"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:textColor="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:id="@+id/resVpdLeaf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="--"
+                    android:textAppearance="@style/TextAppearance.Grow.BigNumber" />
+
+                <TextView
+                    android:id="@+id/textStatus"
+                    style="@style/Grow.StatusPill"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        style="@style/Grow.StatTile"
+                        android:layout_marginEnd="6dp">
+
+                        <TextView
+                            style="@style/Grow.StatLabel"
+                            android:text="@string/label_vpd_air" />
+
+                        <TextView
+                            android:id="@+id/resVpdAir"
+                            style="@style/Grow.StatValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/Grow.StatTile"
+                        android:layout_marginStart="6dp">
+
+                        <TextView
+                            style="@style/Grow.StatLabel"
+                            android:text="@string/label_temp_leaf" />
+
+                        <TextView
+                            android:id="@+id/resTempLeaf"
+                            style="@style/Grow.StatValue" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

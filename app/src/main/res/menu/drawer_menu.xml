@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_tools"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_volumenstrom"
+            android:icon="@drawable/ic_tool_air"
+            android:title="@string/menu_volumenstrom" />
+        <item
+            android:id="@+id/nav_vpd"
+            android:icon="@drawable/ic_tool_vpd"
+            android:title="@string/menu_vpd" />
+        <item
+            android:id="@+id/nav_dli"
+            android:icon="@drawable/ic_tool_dli"
+            android:title="@string/menu_dli" />
+        <item
+            android:id="@+id/nav_nutrient"
+            android:icon="@drawable/ic_tool_nutrient"
+            android:title="@string/menu_nutrient" />
+    </group>
+    <item android:title="Allgemein">
+        <menu>
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/ic_info"
+                android:title="@string/menu_info" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/menu_settings" />
+        </menu>
+    </item>
+</menu>

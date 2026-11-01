@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.VolumenstromRechner" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorOnPrimary">@color/on_primary_green</item>
+        <item name="colorPrimaryContainer">@color/primary_container_green</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container_green</item>
+
+        <item name="colorSecondary">@color/secondary_grey</item>
+        <item name="colorOnSecondary">@color/on_secondary_grey</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_grey</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container_grey</item>
+
+        <item name="colorTertiary">@color/tertiary_earth</item>
+        <item name="colorOnTertiary">@color/on_tertiary_earth</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container_earth</item>
+        <item name="colorOnTertiaryContainer">@color/on_tertiary_container_earth</item>
+
+        <item name="android:colorBackground">@color/surface_grey</item>
+        <item name="android:windowBackground">@color/surface_grey</item>
+        <item name="colorSurface">@color/surface_grey</item>
+        <item name="colorOnSurface">@color/on_surface_grey</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        <item name="colorOutline">@color/outline_grey</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
+        <item name="colorSurfaceContainerLowest">@color/surface_container_lowest</item>
+        <item name="colorSurfaceContainerLow">@color/surface_container_low</item>
+        <item name="colorSurfaceContainer">@color/surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/surface_container_highest</item>
+
+        <!-- DrawerLayout paints the status bar area with colorPrimaryDark -->
+        <item name="colorPrimaryDark">@color/surface_grey</item>
+        <item name="android:statusBarColor">@color/surface_grey</item>
+        <item name="android:navigationBarColor">@color/surface_grey</item>
+        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">@bool/light_system_bars</item>
+
+        <item name="textInputStyle">@style/Widget.Grow.TextInputLayout</item>
+        <item name="materialButtonStyle">@style/Widget.Grow.Button</item>
+    </style>
+
+    <!-- Inputs -->
+    <style name="Widget.Grow.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxBackgroundColor">?attr/colorSurfaceContainerLowest</item>
+    </style>
+
+    <style name="Widget.Grow.TextInputLayout.Dropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxBackgroundColor">?attr/colorSurfaceContainerLowest</item>
+    </style>
+
+    <!-- Buttons -->
+    <style name="Widget.Grow.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">18dp</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.Grow.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="cornerRadius">18dp</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <!-- Cards -->
+    <style name="Widget.Grow.Card.Section" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">28dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerLow</item>
+        <item name="contentPadding">20dp</item>
+    </style>
+
+    <style name="Widget.Grow.Card.Tile" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">28dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerLow</item>
+    </style>
+
+    <style name="Widget.Grow.Card.Result" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">28dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">?attr/colorPrimaryContainer</item>
+    </style>
+
+    <!-- Text -->
+    <style name="TextAppearance.Grow.SectionTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Grow.Overline" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Grow.BigNumber" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+    </style>
+
+    <!-- Reusable views -->
+    <style name="Grow" />
+
+    <style name="Grow.IconBadge">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:padding">13dp</item>
+        <item name="android:background">@drawable/bg_icon_badge</item>
+        <item name="android:importantForAccessibility">no</item>
+    </style>
+
+    <style name="Grow.StatusPill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pill</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Grow.StatTile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/bg_stat_tile</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="Grow.StatLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelMedium</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="Grow.StatValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleMedium</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">--</item>
+    </style>
+
+    <style name="Grow.KeyRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="Grow.KeyLabel">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
+    <style name="Grow.KeyValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Grow.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:background">?attr/colorOnPrimaryContainer</item>
+        <item name="android:alpha">0.15</item>
+    </style>
+</resources>

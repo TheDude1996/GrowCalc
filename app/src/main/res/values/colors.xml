@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand: deep forest green -->
+    <color name="primary_green">#2D6A4F</color>
+    <color name="on_primary_green">#FFFFFF</color>
+    <color name="primary_container_green">#B7EBCB</color>
+    <color name="on_primary_container_green">#00210F</color>
+
+    <color name="secondary_grey">#4E6356</color>
+    <color name="on_secondary_grey">#FFFFFF</color>
+    <color name="secondary_container_grey">#D1E8D7</color>
+    <color name="on_secondary_container_grey">#0B1F14</color>
+
+    <color name="tertiary_earth">#8A5A2B</color>
+    <color name="on_tertiary_earth">#FFFFFF</color>
+    <color name="tertiary_container_earth">#FFDCBF</color>
+    <color name="on_tertiary_container_earth">#2E1600</color>
+
+    <color name="surface_grey">#F5FAF5</color>
+    <color name="on_surface_grey">#171D19</color>
+    <color name="surface_variant">#DCE5DC</color>
+    <color name="on_surface_variant">#404943</color>
+    <color name="outline_grey">#707972</color>
+    <color name="outline_variant">#C0C9C1</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#EDF4EE</color>
+    <color name="surface_container">#E9EFE9</color>
+    <color name="surface_container_high">#E4EAE4</color>
+    <color name="surface_container_highest">#DEE4DE</color>
+
+    <!-- Hero gradient -->
+    <color name="hero_start">#1B4332</color>
+    <color name="hero_end">#40916C</color>
+    <color name="on_hero">#FFFFFF</color>
+
+    <!-- Tool accents (badge background / icon) -->
+    <color name="accent_air_bg">#D6E8FF</color>
+    <color name="accent_air">#1E5FA8</color>
+    <color name="accent_vpd_bg">#C9F0EC</color>
+    <color name="accent_vpd">#00695F</color>
+    <color name="accent_dli_bg">#FFE7B3</color>
+    <color name="accent_dli">#8F5B00</color>
+    <color name="accent_nutrient_bg">#D4F0C4</color>
+    <color name="accent_nutrient">#2F6B12</color>
+
+    <!-- Status -->
+    <color name="status_good_bg">#C7F0D2</color>
+    <color name="status_good">#0E5C2C</color>
+    <color name="status_info_bg">#D6E8FF</color>
+    <color name="status_info">#174D8C</color>
+    <color name="status_warn_bg">#FFE2B0</color>
+    <color name="status_warn">#7A4A00</color>
+    <color name="status_bad_bg">#FFDAD6</color>
+    <color name="status_bad">#93000A</color>
+
+    <color name="stat_tile_overlay">#8CFFFFFF</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

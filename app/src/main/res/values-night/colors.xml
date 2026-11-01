@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_green">#8FD8AE</color>
+    <color name="on_primary_green">#00391F</color>
+    <color name="primary_container_green">#13513A</color>
+    <color name="on_primary_container_green">#B7EBCB</color>
+
+    <color name="secondary_grey">#B5CCBB</color>
+    <color name="on_secondary_grey">#203528</color>
+    <color name="secondary_container_grey">#364B3E</color>
+    <color name="on_secondary_container_grey">#D1E8D7</color>
+
+    <color name="tertiary_earth">#F5BB88</color>
+    <color name="on_tertiary_earth">#4B2800</color>
+    <color name="tertiary_container_earth">#6B4318</color>
+    <color name="on_tertiary_container_earth">#FFDCBF</color>
+
+    <color name="surface_grey">#0F1511</color>
+    <color name="on_surface_grey">#DEE4DE</color>
+    <color name="surface_variant">#404943</color>
+    <color name="on_surface_variant">#C0C9C1</color>
+    <color name="outline_grey">#8A938B</color>
+    <color name="outline_variant">#404943</color>
+    <color name="surface_container_lowest">#0A0F0C</color>
+    <color name="surface_container_low">#171D19</color>
+    <color name="surface_container">#1B211D</color>
+    <color name="surface_container_high">#252B27</color>
+    <color name="surface_container_highest">#303632</color>
+
+    <color name="hero_start">#0F2E22</color>
+    <color name="hero_end">#22694A</color>
+    <color name="on_hero">#E8F5EC</color>
+
+    <color name="accent_air_bg">#16365C</color>
+    <color name="accent_air">#A8CBFF</color>
+    <color name="accent_vpd_bg">#00403A</color>
+    <color name="accent_vpd">#7FDCD0</color>
+    <color name="accent_dli_bg">#4A3200</color>
+    <color name="accent_dli">#FFCB6B</color>
+    <color name="accent_nutrient_bg">#1E4210</color>
+    <color name="accent_nutrient">#A9DD8C</color>
+
+    <color name="status_good_bg">#14482A</color>
+    <color name="status_good">#A6EDBA</color>
+    <color name="status_info_bg">#16365C</color>
+    <color name="status_info">#BCD7FF</color>
+    <color name="status_warn_bg">#4F3300</color>
+    <color name="status_warn">#FFD597</color>
+    <color name="status_bad_bg">#690005</color>
+    <color name="status_bad">#FFDAD6</color>
+
+    <color name="stat_tile_overlay">#1AFFFFFF</color>
+</resources>
