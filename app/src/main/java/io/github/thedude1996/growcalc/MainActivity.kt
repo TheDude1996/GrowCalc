@@ -1,4 +1,4 @@
-package com.example.volumenstromrechner
+package io.github.thedude1996.growcalc
 
 import android.os.Bundle
 import android.widget.Toast
@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.example.volumenstromrechner.fragments.DashboardFragment
-import com.example.volumenstromrechner.fragments.VolumenstromFragment
-import com.example.volumenstromrechner.fragments.VpdFragment
-import com.example.volumenstromrechner.fragments.DliFragment
-import com.example.volumenstromrechner.fragments.NutrientFragment
+import io.github.thedude1996.growcalc.fragments.DashboardFragment
+import io.github.thedude1996.growcalc.fragments.VolumenstromFragment
+import io.github.thedude1996.growcalc.fragments.VpdFragment
+import io.github.thedude1996.growcalc.fragments.DliFragment
+import io.github.thedude1996.growcalc.fragments.NutrientFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 

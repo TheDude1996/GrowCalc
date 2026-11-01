@@ -1,10 +1,10 @@
-package com.example.volumenstromrechner.ui
+package io.github.thedude1996.growcalc.ui
 
 import android.content.res.ColorStateList
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import com.example.volumenstromrechner.R
+import io.github.thedude1996.growcalc.R
 
 /** Semantic tone for status pills in result cards. */
 enum class StatusTone(@ColorRes val background: Int, @ColorRes val foreground: Int) {

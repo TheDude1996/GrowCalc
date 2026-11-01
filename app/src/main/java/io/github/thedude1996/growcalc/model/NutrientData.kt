@@ -1,4 +1,4 @@
-package com.example.volumenstromrechner.model
+package io.github.thedude1996.growcalc.model
 
 data class Manufacturer(
     val name: String,

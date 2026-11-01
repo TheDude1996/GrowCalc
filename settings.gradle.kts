@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "VolumenstromRechner"
+rootProject.name = "GrowCalc"
 include(":app")

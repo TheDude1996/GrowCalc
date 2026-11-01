@@ -1,9 +1,11 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
 
 android {
-    namespace = "com.example.volumenstromrechner"
+    namespace = "io.github.thedude1996.growcalc"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -11,17 +13,32 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.volumenstromrechner"
+        applicationId = "io.github.thedude1996.growcalc"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1.0-beta"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Release signing is read from the untracked keystore.properties in the project root.
+    // Without it, release builds stay unsigned (e.g. on CI or for other contributors).
+    val keystorePropsFile = rootProject.file("keystore.properties")
+    val releaseSigning = if (keystorePropsFile.exists()) {
+        val props = Properties()
+        keystorePropsFile.inputStream().use { props.load(it) }
+        signingConfigs.create("release") {
+            storeFile = file(props.getProperty("storeFile"))
+            storePassword = props.getProperty("storePassword")
+            keyAlias = props.getProperty("keyAlias")
+            keyPassword = props.getProperty("keyPassword")
+        }
+    } else null
+
     buildTypes {
         release {
+            signingConfig = releaseSigning
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))

@@ -22,3 +22,6 @@ local.properties
 *.aab
 *.jks
 *.keystore
+
+# Release signing secrets
+keystore.properties

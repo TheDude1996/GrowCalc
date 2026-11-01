@@ -1,4 +1,4 @@
-package com.example.volumenstromrechner.fragments
+package io.github.thedude1996.growcalc.fragments
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -12,14 +12,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
-import com.example.volumenstromrechner.R
-import com.example.volumenstromrechner.calculation.CaMgMode
-import com.example.volumenstromrechner.calculation.ComponentKind
-import com.example.volumenstromrechner.calculation.NutrientCalculator
-import com.example.volumenstromrechner.model.*
-import com.example.volumenstromrechner.ui.StatusTone
-import com.example.volumenstromrechner.ui.showStatus
-import com.example.volumenstromrechner.viewmodel.NutrientViewModel
+import io.github.thedude1996.growcalc.R
+import io.github.thedude1996.growcalc.calculation.CaMgMode
+import io.github.thedude1996.growcalc.calculation.ComponentKind
+import io.github.thedude1996.growcalc.calculation.NutrientCalculator
+import io.github.thedude1996.growcalc.model.*
+import io.github.thedude1996.growcalc.ui.StatusTone
+import io.github.thedude1996.growcalc.ui.showStatus
+import io.github.thedude1996.growcalc.viewmodel.NutrientViewModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.slider.Slider

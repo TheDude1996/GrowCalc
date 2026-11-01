@@ -1,10 +1,10 @@
-package com.example.volumenstromrechner.calculation
+package io.github.thedude1996.growcalc.calculation
 
-import com.example.volumenstromrechner.model.FeedProgram
-import com.example.volumenstromrechner.model.FeedWeek
-import com.example.volumenstromrechner.model.NutrientComponent
-import com.example.volumenstromrechner.model.NutrientDataProvider
-import com.example.volumenstromrechner.model.NutrientProfile
+import io.github.thedude1996.growcalc.model.FeedProgram
+import io.github.thedude1996.growcalc.model.FeedWeek
+import io.github.thedude1996.growcalc.model.NutrientComponent
+import io.github.thedude1996.growcalc.model.NutrientDataProvider
+import io.github.thedude1996.growcalc.model.NutrientProfile
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

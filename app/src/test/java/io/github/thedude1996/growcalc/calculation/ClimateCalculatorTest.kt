@@ -1,4 +1,4 @@
-package com.example.volumenstromrechner.calculation
+package io.github.thedude1996.growcalc.calculation
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

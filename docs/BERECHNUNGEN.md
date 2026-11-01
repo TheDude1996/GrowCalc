@@ -1,6 +1,6 @@
 # Berechnungen & Formeln
 
-Die gesamte Rechenlogik liegt in `app/src/main/java/com/example/volumenstromrechner/calculation/` und ist durch Unit-Tests abgedeckt (`app/src/test/...`).
+Die gesamte Rechenlogik liegt in `app/src/main/java/io/github/thedude1996/growcalc/calculation/` und ist durch Unit-Tests abgedeckt (`app/src/test/...`).
 
 ## 1. Volumenstrom (Luft)
 

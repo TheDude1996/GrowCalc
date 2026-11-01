@@ -1,12 +1,12 @@
-package com.example.volumenstromrechner.fragments
+package io.github.thedude1996.growcalc.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.volumenstromrechner.MainActivity
-import com.example.volumenstromrechner.R
+import io.github.thedude1996.growcalc.MainActivity
+import io.github.thedude1996.growcalc.R
 import com.google.android.material.card.MaterialCardView
 
 class DashboardFragment : Fragment() {

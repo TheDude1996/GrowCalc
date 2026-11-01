@@ -1,4 +1,4 @@
-package com.example.volumenstromrechner.fragments
+package io.github.thedude1996.growcalc.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import com.example.volumenstromrechner.R
-import com.example.volumenstromrechner.calculation.ClimateCalculator
+import io.github.thedude1996.growcalc.R
+import io.github.thedude1996.growcalc.calculation.ClimateCalculator
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.MaterialAutoCompleteTextView

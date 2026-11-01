@@ -8,7 +8,21 @@
   <img src="docs/screenshots/dashboard.png" width="260" alt="Dashboard" />
   &nbsp;&nbsp;
   <img src="docs/screenshots/vpd.png" width="260" alt="VPD-Rechner mit Ergebnis" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/duenger.png" width="260" alt="Dosierrechner mit Ergebnis" />
 </p>
+
+## Download
+
+👉 **[Neueste Version herunterladen](https://github.com/TheDude1996/GrowCalc/releases/latest)** (Datei `GrowCalc-<version>.apk`)
+
+So installierst du die APK:
+
+1. APK auf dem Android-Gerät herunterladen (Android 7.0 oder neuer).
+2. Datei antippen. Beim ersten Mal fragt Android, ob der Browser/Dateimanager **„Apps aus unbekannten Quellen installieren“** darf – erlauben.
+3. Installieren und GrowCalc öffnen.
+
+> ⚠️ **Beta:** Die App ist noch in Entwicklung. Bitte Fehler über [Issues](https://github.com/TheDude1996/GrowCalc/issues) melden.
 
 ## Funktionen
 
@@ -55,7 +69,7 @@ Alternativ: Projekt in Android Studio öffnen und auf **Run ▶** klicken.
 
 ```
 app/src/main/
-├── java/com/example/volumenstromrechner/
+├── java/io/github/thedude1996/growcalc/
 │   ├── MainActivity.kt          # Navigation (Drawer + Fragmente)
 │   ├── calculation/             # Reine Rechenlogik (ohne Android-Abhängigkeiten, unit-getestet)
 │   ├── fragments/               # Ein Fragment pro Rechner + Dashboard

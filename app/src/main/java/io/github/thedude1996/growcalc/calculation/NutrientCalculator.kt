@@ -1,8 +1,8 @@
-package com.example.volumenstromrechner.calculation
+package io.github.thedude1996.growcalc.calculation
 
-import com.example.volumenstromrechner.model.FeedProgram
-import com.example.volumenstromrechner.model.FeedWeek
-import com.example.volumenstromrechner.model.NutrientComponent
+import io.github.thedude1996.growcalc.model.FeedProgram
+import io.github.thedude1996.growcalc.model.FeedWeek
+import io.github.thedude1996.growcalc.model.NutrientComponent
 
 enum class CaMgMode(val label: String, val ratio: Double?) {
     MANUFACTURER("Original", null),

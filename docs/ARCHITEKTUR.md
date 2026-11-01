@@ -34,7 +34,7 @@ MainActivity
 Alle Design-Tokens liegen in `res/values`:
 
 - `colors.xml` / `values-night/colors.xml` – Farbpalette für hell und dunkel (Marke, Oberflächen, Werkzeug-Akzente, Status-Farben)
-- `themes.xml` – Theme `Theme.VolumenstromRechner` und wiederverwendbare Styles:
+- `themes.xml` – Theme `Theme.GrowCalc` und wiederverwendbare Styles:
   - `Widget.Grow.Card.Section | Tile | Result` – Karten
   - `Widget.Grow.TextInputLayout(.Dropdown)` – Eingabefelder (Standard-Style über `textInputStyle`)
   - `Widget.Grow.Button(.Tonal)` – Buttons

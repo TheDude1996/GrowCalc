@@ -1,10 +1,10 @@
-package com.example.volumenstromrechner.viewmodel
+package io.github.thedude1996.growcalc.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.volumenstromrechner.calculation.*
-import com.example.volumenstromrechner.model.*
+import io.github.thedude1996.growcalc.calculation.*
+import io.github.thedude1996.growcalc.model.*
 
 class NutrientViewModel : ViewModel() {
 
