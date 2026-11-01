@@ -2,6 +2,14 @@
 
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/).
 
+## [0.2.0-beta] – 2026-11-01
+
+### Hinzugefügt
+- PPFD-Rechner: Umrechnung Lux ↔ PPFD (µmol/m²/s) für Sonne/Tageslicht, LED Vollspektrum, HPS und Leuchtstofflampe
+- Live-Messung mit dem Lichtsensor des Handys: geglätteter Messwert, „Wert halten“, Warnung bei übersteuertem Sensor
+- Tabelle mit typischen Umrechnungen und Erklärung zu Lux, PPFD und Messgenauigkeit
+- Einstellungen mit Kalibrierfaktor für den Lichtsensor
+
 ## [0.1.0-beta] – 2026-11-01
 
 Erste öffentliche Beta.
