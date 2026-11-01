@@ -2,6 +2,15 @@
 
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/).
 
+## [0.3.0-beta] – 2026-11-01
+
+### Geändert
+- PPFD-Rechner neu gestaltet als Messgerät: großer Live-Wert, Lichtquelle per Wischen oder Antippen, runder Halten/Messen-Button, Erklärung im Info-Dialog
+- Messung startet beim Öffnen automatisch; niedrige Werte mit einer Nachkommastelle
+
+### Entfernt
+- Manuelle Eingabe, Richtungstausch PPFD → Lux und Tabelle der typischen Umrechnungen
+
 ## [0.2.0-beta] – 2026-11-01
 
 ### Hinzugefügt

@@ -3,14 +3,14 @@ package io.github.thedude1996.growcalc
 import android.content.Context
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.action.ViewActions.swipeLeft
+import androidx.test.espresso.action.ViewActions.swipeRight
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.isEnabled
+import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -19,10 +19,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import io.github.thedude1996.growcalc.fragments.AndroidTestFakeLightSensor
 import io.github.thedude1996.growcalc.fragments.PpfdFragment
-import io.github.thedude1996.growcalc.calculation.LuxPpfdConverter
 import io.github.thedude1996.growcalc.sensor.AndroidLightSensorSource
 import io.github.thedude1996.growcalc.settings.AppSettings
-import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -53,72 +51,80 @@ class PpfdFragmentTest {
         PpfdFragment.sensorSourceFactory = { AndroidLightSensorSource(it) }
     }
 
-    // Thousands separator depends on the device locale
-    private fun formatted(value: Int) = LuxPpfdConverter.formatRounded(value.toDouble())
-
     private fun emit(lux: Float, timeMs: Long) =
         InstrumentationRegistry.getInstrumentation().runOnMainSync { fakeSensor.emit(lux, timeMs) }
 
     @Test
-    fun showsDefaultResult() {
-        onView(withId(R.id.editValue)).check(matches(withText("30000")))
-        onView(withId(R.id.textErgebnis)).check(matches(withText("540")))
-        onView(withId(R.id.textUnit)).check(matches(withText("µmol/m²/s")))
-    }
-
-    @Test
-    fun enterValueChangeLightSourceAndSwapDirection() {
-        onView(withId(R.id.editValue)).perform(replaceText("10000"))
-        closeSoftKeyboard()
-        onView(withId(R.id.textErgebnis)).check(matches(withText("180")))
-
-        onView(withId(R.id.dropdownLightSource)).perform(click())
-        onView(withText("Leuchtstofflampe")).inRoot(isPlatformPopup()).perform(click())
-        onView(withId(R.id.textErgebnis)).check(matches(withText("130")))
-
-        onView(withId(R.id.btnSwap)).perform(click())
-        onView(withId(R.id.textDirection)).check(matches(withText("PPFD → Lux")))
-        onView(withId(R.id.editValue)).check(matches(withText("130")))
-        onView(withId(R.id.textErgebnis)).check(matches(withText(formatted(10_000))))
-        onView(withId(R.id.textUnit)).check(matches(withText("lx")))
-        onView(withId(R.id.btnMeasure)).check(matches(not(isEnabled())))
-    }
-
-    @Test
-    fun invalidInputShowsDash() {
-        onView(withId(R.id.editValue)).perform(replaceText(""))
-        closeSoftKeyboard()
-        onView(withId(R.id.textErgebnis)).check(matches(withText("–")))
-    }
-
-    @Test
-    fun liveMeasurementWithFakeSensor() {
-        onView(withId(R.id.btnMeasure)).perform(click())
+    fun measuresLiveOnOpen() {
         assertTrue(fakeSensor.isRunning)
-        onView(withId(R.id.textLive)).check(matches(isDisplayed()))
+        onView(withId(R.id.textPpfd)).check(matches(withText("–")))
+        onView(withId(R.id.textStatus)).check(matches(withText("LIVE")))
 
-        emit(20_000f, 0)
-        onView(withId(R.id.editValue)).check(matches(withText("20000")))
-        onView(withId(R.id.textErgebnis)).check(matches(withText("360")))
-
-        emit(30_000f, 300)
-        onView(withId(R.id.editValue)).check(matches(withText("25000")))
-        onView(withId(R.id.textErgebnis)).check(matches(withText("450")))
-
-        onView(withId(R.id.btnHold)).perform(click())
-        assertFalse(fakeSensor.isRunning)
-        onView(withId(R.id.textLive)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
-        onView(withId(R.id.editValue)).check(matches(withText("25000")))
-        onView(withId(R.id.textErgebnis)).check(matches(withText("450")))
+        emit(30_000f, 0)
+        onView(withId(R.id.textPpfd)).check(matches(withText("540")))
+        onView(withId(R.id.textLux)).check(matches(withText("≈ 30.000 lx")))
+        onView(withId(R.id.textLightSource)).check(matches(withText("Sonne / Tageslicht")))
     }
 
     @Test
-    fun swappingStopsMeasurement() {
-        onView(withId(R.id.btnMeasure)).perform(click())
+    fun lowLightShowsOneDecimal() {
+        emit(161f, 0)
+        onView(withId(R.id.textPpfd)).check(matches(withText("2,9")))
+    }
+
+    @Test
+    fun changeLightSourceByTapAndSwipe() {
         emit(10_000f, 0)
-        onView(withId(R.id.btnSwap)).perform(click())
+        onView(withId(R.id.textPpfd)).check(matches(withText("180")))
+
+        onView(withId(R.id.btnLightSource)).perform(click())
+        onView(withId(R.id.textLightSource)).check(matches(withText("LED Vollspektrum")))
+        onView(withId(R.id.textPpfd)).check(matches(withText("140")))
+
+        onView(withId(R.id.meterPanel)).perform(swipeLeft())
+        onView(withId(R.id.textLightSource)).check(matches(withText("Natriumdampf (HPS)")))
+
+        onView(withId(R.id.meterPanel)).perform(swipeRight())
+        onView(withId(R.id.meterPanel)).perform(swipeRight())
+        onView(withId(R.id.textLightSource)).check(matches(withText("Sonne / Tageslicht")))
+
+        onView(withContentDescription("Lichtquelle Leuchtstofflampe")).perform(click())
+        onView(withId(R.id.textPpfd)).check(matches(withText("130")))
+    }
+
+    @Test
+    fun holdAndMeasureAgain() {
+        emit(20_000f, 0)
+        emit(30_000f, 300)
+        onView(withId(R.id.textPpfd)).check(matches(withText("450")))
+
+        onView(withId(R.id.btnMain)).perform(click())
         assertFalse(fakeSensor.isRunning)
-        onView(withId(R.id.editValue)).check(matches(withText("180")))
-        onView(withId(R.id.textErgebnis)).check(matches(withText(formatted(10_000))))
+        onView(withId(R.id.textStatus)).check(matches(withText("GEHALTEN")))
+        onView(withId(R.id.textPpfd)).check(matches(withText("450")))
+
+        onView(withId(R.id.btnMain)).perform(click())
+        assertTrue(fakeSensor.isRunning)
+        onView(withId(R.id.textStatus)).check(matches(withText("LIVE")))
+    }
+
+    @Test
+    fun saturationWarning() {
+        onView(withId(R.id.textSaturated)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        (0..12).forEach { emit(40_000f, it * 250L) }
+        onView(withId(R.id.textSaturated)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun infoShowsExplanation() {
+        onView(withId(R.id.btnInfo)).perform(click())
+        onView(withText("So funktioniert die Messung")).inRoot(isDialog()).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun settingsButtonOpensSettings() {
+        onView(withId(R.id.btnSettings)).perform(click())
+        onView(withId(R.id.editCalibration)).check(matches(isDisplayed()))
+        assertFalse("sensor stops when leaving the meter", fakeSensor.isRunning)
     }
 }

@@ -45,6 +45,17 @@
     <color name="accent_ppfd_bg">#EADDFF</color>
     <color name="accent_ppfd">#5B3E96</color>
 
+    <!-- PPFD meter (always dark, same in light and dark mode) -->
+    <color name="meter_bg_top">#0B1A13</color>
+    <color name="meter_bg_bottom">#1B3A2B</color>
+    <color name="on_meter">#FFFFFF</color>
+    <color name="on_meter_muted">#B3FFFFFF</color>
+    <color name="meter_button">#000000</color>
+    <color name="meter_accent">#FFA51F</color>
+    <color name="on_meter_accent">#2B1700</color>
+    <color name="meter_live">#3DDC84</color>
+    <color name="meter_dot_inactive">#66FFFFFF</color>
+
     <!-- Status -->
     <color name="status_good_bg">#C7F0D2</color>
     <color name="status_good">#0E5C2C</color>
