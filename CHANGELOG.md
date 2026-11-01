@@ -2,7 +2,7 @@
 
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/).
 
-## [Unveröffentlicht]
+## [0.5.0-beta] – 2026-11-01
 
 ### Hinzugefügt
 - Englische Oberfläche: Die App erscheint auf Englisch, wenn die Gerätesprache nicht Deutsch ist; auf deutschen Geräten bleibt alles auf Deutsch

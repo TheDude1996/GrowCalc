@@ -200,11 +200,11 @@
           <svg viewBox="0 0 24 24"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
           Source code
         </a>
-        <div class="hero-meta">Current: version 0.4.0-beta · Android 7.0 or newer · App interface in German</div>
+        <div class="hero-meta">Current: version 0.5.0-beta · Android 7.0 or newer · English &amp; German</div>
       </div>
       <div class="hero-shots">
-        <div class="phone"><img src="../screenshots/dashboard.png" alt="GrowCalc dashboard with six calculator tiles" /></div>
-        <div class="phone"><img src="../screenshots/ppfd.png" alt="PPFD light meter showing 511 µmol/m²/s" /></div>
+        <div class="phone"><img src="../screenshots/en/dashboard.png" alt="GrowCalc dashboard with six calculator tiles" /></div>
+        <div class="phone"><img src="../screenshots/en/ppfd.png" alt="PPFD light meter showing 511 µmol/m²/s" /></div>
       </div>
     </section>
 
@@ -214,8 +214,6 @@
       <div class="stat"><b>100&nbsp;%</b><span>works offline</span></div>
       <div class="stat"><b>GPL-3.0</b><span>free software</span></div>
     </div>
-
-    <div class="note">🌐 <b>Good to know:</b> The app interface is currently available in German only. The screenshots on this page therefore show German labels – each section below explains what you see.</div>
 
     <!-- Tool overview -->
     <h2 id="tools">Tools</h2>
@@ -258,11 +256,11 @@
     <p class="lead">All calculations are documented openly and covered by unit tests. Results are color-coded so you can see at a glance whether you're in the green zone.</p>
 
     <section class="feature" id="airflow">
-      <div class="shots"><div class="phone"><img src="../screenshots/volumenstrom.png" alt="Airflow calculator: 200 mm at 5.5 m/s gives 622 m³/h" loading="lazy" /></div></div>
+      <div class="shots"><div class="phone"><img src="../screenshots/en/volumenstrom.png" alt="Airflow calculator: 200 mm at 5.5 m/s gives 622 m³/h" loading="lazy" /></div></div>
       <div>
         <div class="feature-head">
           <div class="badge" style="background:var(--air)"><svg viewBox="0 0 24 24" style="fill:var(--air-i)"><path d="M14.5,17c0,1.65 -1.35,3 -3,3s-3,-1.35 -3,-3h2c0,0.55 0.45,1 1,1s1,-0.45 1,-1s-0.45,-1 -1,-1H2v-2h9.5C13.15,14 14.5,15.35 14.5,17zM19,6.5C19,4.57 17.43,3 15.5,3S12,4.57 12,6.5h2C14,5.67 14.67,5 15.5,5S17,5.67 17,6.5S16.33,8 15.5,8H2v2h13.5C17.43,10 19,8.43 19,6.5zM18.5,11H2v2h16.5c0.83,0 1.5,0.67 1.5,1.5S19.33,16 18.5,16v2c1.93,0 3.5,-1.57 3.5,-3.5S20.43,11 18.5,11z"/></svg></div>
-          <div><div class="kicker">Ventilation · in the app: “Volumenstromrechner”</div><h3>Airflow calculator</h3></div>
+          <div><div class="kicker">Ventilation</div><h3>Airflow calculator</h3></div>
         </div>
         <p>How much air does your exhaust system really move? Pick the duct diameter, enter the air velocity measured inside the duct (e.g. with an anemometer) and GrowCalc calculates the airflow in m³/h. That way you can check whether fan and carbon filter match your tent size and whether the air is exchanged often enough.</p>
         <ul class="checks">
@@ -275,7 +273,7 @@
     </section>
 
     <section class="feature flip" id="vpd">
-      <div class="shots"><div class="phone"><img src="../screenshots/vpd.png" alt="VPD calculator: 26 °C, 60 % RH, leaf offset −2 gives a leaf VPD of 0.97 kPa – ideal" loading="lazy" /></div></div>
+      <div class="shots"><div class="phone"><img src="../screenshots/en/vpd.png" alt="VPD calculator: 26 °C, 60 % RH, leaf offset −2 gives a leaf VPD of 0.97 kPa – ideal" loading="lazy" /></div></div>
       <div>
         <div class="feature-head">
           <div class="badge" style="background:var(--vpd)"><svg viewBox="0 0 24 24" style="fill:var(--vpd-i)"><path d="M12,2c-5.33,4.55 -8,8.48 -8,11.8c0,4.98 3.8,8.2 8,8.2s8,-3.22 8,-8.2C20,10.48 17.33,6.55 12,2z"/></svg></div>
@@ -294,7 +292,7 @@ VPD_leaf = SVP(T_air + offset) − SVP(T_air) · RH/100</div>
     </section>
 
     <section class="feature" id="dli">
-      <div class="shots"><div class="phone"><img src="../screenshots/dli.png" alt="DLI calculator: 600 µmol for 18 h gives 38.88 mol/m²/day" loading="lazy" /></div></div>
+      <div class="shots"><div class="phone"><img src="../screenshots/en/dli.png" alt="DLI calculator: 600 µmol for 18 h gives 38.88 mol/m²/day" loading="lazy" /></div></div>
       <div>
         <div class="feature-head">
           <div class="badge" style="background:var(--dli)"><svg viewBox="0 0 24 24" style="fill:var(--dli-i)"><path d="M12,5.5c-3.31,0 -6,2.69 -6,6s2.69,6 6,6 6,-2.69 6,-6 -2.69,-6 -6,-6zM11,0.55h2V3.5h-2zM11,19.5h2v2.95h-2zM1,10.5h3v2H1zM20,10.5h3v2h-3zM3.55,4.46l1.41,-1.41 1.8,1.79 -1.42,1.41zM17.24,18.16l1.4,-1.4 1.8,1.79 -1.41,1.41zM17.25,4.84l1.79,-1.79 1.41,1.41 -1.79,1.79zM3.55,18.54l1.79,-1.8 1.41,1.41 -1.79,1.8z"/></svg></div>
@@ -313,13 +311,13 @@ VPD_leaf = SVP(T_air + offset) − SVP(T_air) · RH/100</div>
 
     <section class="feature flip" id="nutrients">
       <div class="shots two">
-        <div class="phone"><img src="../screenshots/duenger_input.png" alt="Nutrient calculator: choosing manufacturer, line, program and week" loading="lazy" /></div>
-        <div class="phone"><img src="../screenshots/duenger.png" alt="Nutrient calculator result with amounts, EC and nutrient analysis" loading="lazy" /></div>
+        <div class="phone"><img src="../screenshots/en/duenger_input.png" alt="Nutrient calculator: choosing manufacturer, line, program and week" loading="lazy" /></div>
+        <div class="phone"><img src="../screenshots/en/duenger.png" alt="Nutrient calculator result with amounts, EC and nutrient analysis" loading="lazy" /></div>
       </div>
       <div>
         <div class="feature-head">
           <div class="badge" style="background:var(--nut)"><svg viewBox="0 0 24 24" style="fill:var(--nut-i)"><path d="M19.8,18.4L14,10.67V6.5l1.35,-1.69C15.61,4.48 15.38,4 14.96,4H9.04C8.62,4 8.39,4.48 8.65,4.81L10,6.5v4.17L4.2,18.4C3.71,19.06 4.18,20 5,20h14C19.82,20 20.29,19.06 19.8,18.4z"/></svg></div>
-          <div><div class="kicker">Nutrients · in the app: “Dosierrechner”</div><h3>Nutrient dosing calculator</h3></div>
+          <div><div class="kicker">Nutrients</div><h3>Nutrient dosing calculator</h3></div>
         </div>
         <p>Choose manufacturer, product line, program and the current week – GrowCalc works out the fertilizer amounts for your mixing volume and updates the result live with every change. Using your water analysis (calcium and magnesium), the calcium dose is adjusted to reach the desired Ca:Mg ratio.</p>
         <ul class="checks">
@@ -333,7 +331,7 @@ VPD_leaf = SVP(T_air + offset) − SVP(T_air) · RH/100</div>
     </section>
 
     <section class="feature" id="ppfd">
-      <div class="shots"><div class="phone"><img src="../screenshots/ppfd.png" alt="PPFD light meter in live mode: full-spectrum LED, 511 µmol/m²/s" loading="lazy" /></div></div>
+      <div class="shots"><div class="phone"><img src="../screenshots/en/ppfd.png" alt="PPFD light meter in live mode: full-spectrum LED, 511 µmol/m²/s" loading="lazy" /></div></div>
       <div>
         <div class="feature-head">
           <div class="badge" style="background:var(--ppfd)"><svg viewBox="0 0 24 24" style="fill:var(--ppfd-i)"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg></div>
@@ -352,13 +350,13 @@ VPD_leaf = SVP(T_air + offset) − SVP(T_air) · RH/100</div>
 
     <section class="feature flip" id="irrigation">
       <div class="shots two">
-        <div class="phone"><img src="../screenshots/bewaesserung.png" alt="Irrigation calculator: 4 L/h dripper, 2 drippers per pot, two waterings of 3 minutes each" loading="lazy" /></div>
-        <div class="phone"><img src="../screenshots/bewaesserung_ergebnis.png" alt="Irrigation result: 800 ml per pot and day, 4.8 L for 6 pots, tank lasts 12.5 days" loading="lazy" /></div>
+        <div class="phone"><img src="../screenshots/en/bewaesserung.png" alt="Irrigation calculator: 4 L/h dripper, 2 drippers per pot, two waterings of 3 minutes each" loading="lazy" /></div>
+        <div class="phone"><img src="../screenshots/en/bewaesserung_ergebnis.png" alt="Irrigation result: 800 ml per pot and day, 4.8 L for 6 pots, tank lasts 12.5 days" loading="lazy" /></div>
       </div>
       <div>
         <div class="feature-head">
           <div class="badge" style="background:var(--irr)"><svg viewBox="0 0 24 24" style="fill:var(--irr-i)"><path d="M3 4h18v2h-5v2h-2V6h-4v2H8V6H3V4zm4.5 8.5c0 1.1-.9 2-2 2s-2-.9-2-2c0-1.3 2-3.5 2-3.5s2 2.2 2 3.5zm7 4c0 1.4-1.1 2.5-2.5 2.5S9.5 17.9 9.5 16.5c0-1.7 2.5-4.5 2.5-4.5s2.5 2.8 2.5 4.5z"/></svg></div>
-          <div><div class="kicker">Water · in the app: “Bewässerungsrechner”</div><h3>Irrigation calculator</h3></div>
+          <div><div class="kicker">Water</div><h3>Irrigation calculator</h3></div>
         </div>
         <p>Plan your drip irrigation: from the flow rate per dripper, the number of drippers per pot and the run time, GrowCalc calculates the amount of water per pot – for each single watering and for the whole day. Add the number of pots and your tank volume to see how long your tank will last.</p>
         <ul class="checks">
@@ -377,13 +375,13 @@ Tank range [days] = tank [L] · 1000 / daily amount [ml]</div>
     <h2>Gallery</h2>
     <p class="lead">Material 3 design with a custom color scheme – light and dark. Tap to enlarge.</p>
     <div class="gallery">
-      <figure><a href="../screenshots/dashboard.png"><div class="phone"><img src="../screenshots/dashboard.png" alt="Dashboard, light theme" loading="lazy" /></div></a><figcaption>Dashboard</figcaption></figure>
-      <figure><a href="../screenshots/dashboard_dark.png"><div class="phone"><img src="../screenshots/dashboard_dark.png" alt="Dashboard in dark mode" loading="lazy" /></div></a><figcaption>Dark mode</figcaption></figure>
-      <figure><a href="../screenshots/drawer.png"><div class="phone"><img src="../screenshots/drawer.png" alt="Navigation menu" loading="lazy" /></div></a><figcaption>Navigation menu</figcaption></figure>
-      <figure><a href="../screenshots/vpd.png"><div class="phone"><img src="../screenshots/vpd.png" alt="VPD calculator" loading="lazy" /></div></a><figcaption>VPD</figcaption></figure>
-      <figure><a href="../screenshots/ppfd.png"><div class="phone"><img src="../screenshots/ppfd.png" alt="PPFD light meter" loading="lazy" /></div></a><figcaption>PPFD light meter</figcaption></figure>
-      <figure><a href="../screenshots/duenger.png"><div class="phone"><img src="../screenshots/duenger.png" alt="Nutrient calculator" loading="lazy" /></div></a><figcaption>Nutrient dosing</figcaption></figure>
-      <figure><a href="../screenshots/bewaesserung.png"><div class="phone"><img src="../screenshots/bewaesserung.png" alt="Irrigation calculator" loading="lazy" /></div></a><figcaption>Irrigation</figcaption></figure>
+      <figure><a href="../screenshots/en/dashboard.png"><div class="phone"><img src="../screenshots/en/dashboard.png" alt="Dashboard, light theme" loading="lazy" /></div></a><figcaption>Dashboard</figcaption></figure>
+      <figure><a href="../screenshots/en/dashboard_dark.png"><div class="phone"><img src="../screenshots/en/dashboard_dark.png" alt="Dashboard in dark mode" loading="lazy" /></div></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a href="../screenshots/en/drawer.png"><div class="phone"><img src="../screenshots/en/drawer.png" alt="Navigation menu" loading="lazy" /></div></a><figcaption>Navigation menu</figcaption></figure>
+      <figure><a href="../screenshots/en/vpd.png"><div class="phone"><img src="../screenshots/en/vpd.png" alt="VPD calculator" loading="lazy" /></div></a><figcaption>VPD</figcaption></figure>
+      <figure><a href="../screenshots/en/ppfd.png"><div class="phone"><img src="../screenshots/en/ppfd.png" alt="PPFD light meter" loading="lazy" /></div></a><figcaption>PPFD light meter</figcaption></figure>
+      <figure><a href="../screenshots/en/duenger.png"><div class="phone"><img src="../screenshots/en/duenger.png" alt="Nutrient calculator" loading="lazy" /></div></a><figcaption>Nutrient dosing</figcaption></figure>
+      <figure><a href="../screenshots/en/bewaesserung.png"><div class="phone"><img src="../screenshots/en/bewaesserung.png" alt="Irrigation calculator" loading="lazy" /></div></a><figcaption>Irrigation</figcaption></figure>
     </div>
 
     <!-- Highlights -->
@@ -393,6 +391,7 @@ Tank range [days] = tank [L] · 1000 / daily amount [ml]</div>
       <div class="mini"><b>🌙 Dark mode</b><span>Follows your system setting – easy on the eyes in a dark room.</span></div>
       <div class="mini"><b>✈️ Fully offline</b><span>No internet connection, no account, no trackers.</span></div>
       <div class="mini"><b>🔒 No permissions</b><span>Even the light sensor works without any permission.</span></div>
+      <div class="mini"><b>🌍 English &amp; German</b><span>Follows your device language – or choose per app on Android 13+.</span></div>
       <div class="mini"><b>🔢 Dot or comma</b><span>Enter decimals the way you're used to.</span></div>
       <div class="mini"><b>🚦 Color-coded results</b><span>Ideal, low, high, critical – recognizable instantly.</span></div>
       <div class="mini"><b>📖 Open formulas</b><span>Every calculation is <a href="https://github.com/TheDude1996/GrowCalc/blob/main/docs/BERECHNUNGEN.md">documented</a> (German) and tested.</span></div>
@@ -424,7 +423,7 @@ cd GrowCalc
     <h2 id="faq">FAQ</h2>
     <details>
       <summary>Is the app available in English?</summary>
-      <p>Not yet – the interface is currently German only. The numbers and units are international, so most screens are easy to follow. An English translation is a welcome contribution: the texts live in <code>app/src/main/res/values/strings.xml</code>.</p>
+      <p>Yes. Since version 0.5.0 GrowCalc speaks English and German and follows your device language automatically: German devices get German, all others English. On Android 13 and newer you can also pick the language per app under Settings → Apps → GrowCalc → Language.</p>
     </details>
     <details>
       <summary>How accurate is the PPFD measurement with a phone?</summary>

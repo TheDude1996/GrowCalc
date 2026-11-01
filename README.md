@@ -43,6 +43,7 @@ Weitere Merkmale:
 - Eingaben mit Punkt *oder* Komma
 - Farbcodierte Ergebnisse (ideal / niedrig / hoch / kritisch)
 - Komplett offline, keine Berechtigungen nötig
+- Deutsch und Englisch – richtet sich nach der Gerätesprache (ab Android 13 auch pro App wählbar)
 
 Die verwendeten Formeln sind in [docs/BERECHNUNGEN.md](docs/BERECHNUNGEN.md) beschrieben.
 
